@@ -23,6 +23,10 @@
         @apply text-[#1479fd] text-xl
     }
 
+    .page_title{
+        @apply text-6xl text-[black] pl-8 pt-4 
+    }
+
     
 }
 

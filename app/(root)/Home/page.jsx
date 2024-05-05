@@ -23,7 +23,10 @@ export default async function Page() {
 
     return (
         <div>
-            Home
+            <div className='page_title'>
+             Home
+            </div>
+            
         </div>
     )
 }
