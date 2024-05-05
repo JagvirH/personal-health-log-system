@@ -2,4 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    
+  }
+
+@layer utilities {
+    .sidebar_background {
+        @apply bg-[#ffffff] text-center py-8;
+    }
+
+    .main_background {
+        @apply bg-[#f7fbfe] p-2 h-full; /* Adjust the color name or value as needed */
+    }
+}
+
+
 

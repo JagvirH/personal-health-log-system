@@ -8,7 +8,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ClerkProvider>
        <body >{children}</body>
-      </ClerkProvider>
+       </ClerkProvider>
     </html>
   );
 }
+
