@@ -8,12 +8,12 @@ export default function RootLayout({ children }) {
 
     <html lang="en">
       <ClerkProvider>
-        <body style={{ display: "flex" }}>
+        <body className="main_background " style={{ display: "flex" }}>
           <div className="w-1/8" style={{ flex: "1" }}>
             <Sidebar />
           </div>
           <div className="w-3/4" style={{ flex: "7" }}>
-            <div className="main_background ">
+            <div className="">
               {children}
             </div>
             

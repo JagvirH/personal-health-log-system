@@ -23,7 +23,7 @@ export default async function Page() {
 
     return (
         <div>
-            Logged in
+            Home
         </div>
     )
 }

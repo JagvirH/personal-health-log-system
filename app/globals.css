@@ -8,12 +8,22 @@
 
 @layer utilities {
     .sidebar_background {
-        @apply bg-[#ffffff] text-center py-8;
+        @apply flex h-full bg-[#ffffff] text-center py-8 px-8;
+    }
+
+    .sidebar_button{
+        @apply py-4 px-4 hover:bg-[#1479fd] hover:text-[white] cursor-pointer rounded-xl font-medium;
     }
 
     .main_background {
-        @apply bg-[#f7fbfe] p-2 h-full; /* Adjust the color name or value as needed */
+        @apply bg-[#f7fbfe] h-full; /* Adjust the color name or value as needed */
     }
+
+    .blue_text_title{
+        @apply text-[#1479fd] text-xl
+    }
+
+    
 }
 
 
