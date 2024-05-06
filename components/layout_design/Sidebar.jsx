@@ -35,9 +35,11 @@ export default async function Sidebar() {
                     <div>
                         <div className='flex justify-center p-4 h-[10vh]'>
                             <div className='flex w-full h-full'>
-                                <div className='blue_button text-lg' >
-                                    Create + 
-                                </div>
+                                <Link href={'/Create'}>
+                                    <div className='blue_button text-lg' >
+                                        Create + 
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
