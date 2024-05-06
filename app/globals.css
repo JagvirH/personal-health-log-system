@@ -24,11 +24,18 @@
     }
 
     .page_title{
-        @apply text-6xl text-[black] pl-8 pt-4 
+        @apply text-6xl text-[black] pl-8 pt-4 pb-8
     }
+
+    .blue_button{
+        @apply flex justify-center text-[white] text-center bg-[#1479fd] rounded-xl hover:shadow-2xl 
+    }
+
 
     
 }
+
+
 
 
 
