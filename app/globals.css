@@ -28,7 +28,7 @@
     }
 
     .blue_button{
-        @apply flex justify-center items-center text-[white] text-center bg-[#1479fd] rounded-xl hover:shadow-2xl 
+        @apply flex justify-center items-center text-[white] text-center bg-[#1479fd] rounded-xl hover:shadow-2xl hover:bg-blue-700
     }
 
     .log_card_title{
