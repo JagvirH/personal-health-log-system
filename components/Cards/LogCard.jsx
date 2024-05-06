@@ -1,12 +1,27 @@
 import React from 'react';
-import '../../app/globals.css';
+//import LogCard from '@/components/Cards/LogCard';
 
-export default async function Sidebar() {
-
-
+export default async function Sidebar({title, tags, description}) {
     return (
-        <div className=''>
-            Hi
+        <div className='flex w-96'>
+            <div className='bg-white rounded-xl p-4'>
+                <div className='log_card_title pb-2'>
+                    {title}
+                </div>
+                <div>
+                    Tags: <span className='card_tag'>{tags}</span>
+                </div>
+                <div className='pb-2'>
+                    Description:
+                    <br />
+                    <div className='border'>
+                        {description}
+                    </div>
+                </div>
+                <div className='blue_button pb-2'>
+                    Edit
+                </div>
+            </div>
         </div>
     );
 }
