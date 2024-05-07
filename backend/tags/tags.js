@@ -10,8 +10,9 @@ export async function getTag() {
 
     try {
         // Execute the SQL statement with the provided values
-        await connection.query(sql);
+        const [tagList, metadata] = await connection.query(sql);
         console.log('Got Tags');
+        return tagList
     } catch (error) {
         console.error('Error getting tags', error);
     } finally {

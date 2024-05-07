@@ -1,6 +1,12 @@
+import { getTag } from '@/backend/tags/tags';
 import React from 'react';
 
 export default async function Page() {
+
+    const tagList = await getTag()
+
+    console.log(tagList[0].Title)
+
     return (
         <div className='p-16'>
             <div className='bg-[#FFFFFF] rounded p-2'>
