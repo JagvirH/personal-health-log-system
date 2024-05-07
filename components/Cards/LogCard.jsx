@@ -1,7 +1,9 @@
 import React from 'react';
 //import LogCard from '@/components/Cards/LogCard';
 
+
 export default async function Sidebar({title, tags, description}) {
+    //console.log(tags[0])
     return (
         <div className='flex w-96'>
             <div className='bg-white rounded-xl p-4'>
@@ -9,7 +11,9 @@ export default async function Sidebar({title, tags, description}) {
                     {title}
                 </div>
                 <div>
-                    Tags: <span className='card_tag'>{tags}</span>
+                    Tags: {tags.map((tag, index) => (
+                        <span key={index} className='card_tag px-2'>{tag}</span>
+                    ))}
                 </div>
                 <div className='pb-2'>
                     Description:
