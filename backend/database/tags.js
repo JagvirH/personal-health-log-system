@@ -1,7 +1,7 @@
 'use server'
 
 import mysql from 'mysql2';
-import { connectToDB } from "../mySql";
+import { connectToDB } from "@/backend/database/mySql";
 
 export async function getTag() {
     let connection = await connectToDB();

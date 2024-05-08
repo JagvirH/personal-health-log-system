@@ -1,9 +1,9 @@
-import { getTag } from '@/backend/tags/tags';
+
 import React from 'react';
 
 export default async function Page() {
 
-    const tagList = await getTag()
+    const tagList = await getTag
 
     console.log(tagList[0].Title)
 

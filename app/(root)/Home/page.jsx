@@ -1,7 +1,7 @@
 import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { auth, currentUser } from "@clerk/nextjs/server";
-import { addUser, checkUser } from '@/backend/users/onboarding';
+import { addUser, checkUser } from '@/backend/database/onboarding';
 
 export default async function Page() {
 
