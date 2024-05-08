@@ -1,11 +1,22 @@
+'use client'
 
-import React from 'react';
+import { getTag } from '@/backend/database/tags';
+import React, { useState } from 'react';
 
-export default async function Page() {
+export default function Page() {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
-    const tagList = await getTag
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // Get the selected tags here if needed
 
-    console.log(tagList[0].Title)
+        // Now you can use the title and description state variables
+        console.log('Title:', title);
+        console.log('Description:', description);
+
+        // You can perform any other actions here, such as sending the data to the backend
+    };
 
     return (
         <div className='p-16'>
@@ -15,11 +26,14 @@ export default async function Page() {
                     <hr />
                 </div>
                 
-                <form className='py-8 px-4'>
+                <form className='py-8 px-4' onSubmit={handleSubmit}>
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>Title</label>
                         <input
                             type='text'
+                            key='title'
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                             className='mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                             placeholder='Enter title...'
                         />
@@ -27,6 +41,9 @@ export default async function Page() {
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>Description</label>
                         <textarea
+                            value={description}
+                            key='description'
+                            onChange={(e) => setDescription(e.target.value)}
                             className='mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-40 resize-none'
                             placeholder='Enter description...'
                         ></textarea>
