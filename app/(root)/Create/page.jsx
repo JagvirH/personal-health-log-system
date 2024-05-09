@@ -2,6 +2,7 @@
 
 import { getTag } from '@/backend/database/tags';
 import React, { useState } from 'react';
+import {createLogForm} from '@/backend/validation/form'
 
 export default function Page() {
     const [title, setTitle] = useState('');
@@ -9,14 +10,10 @@ export default function Page() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Get the selected tags here if needed
-
-        // Now you can use the title and description state variables
         console.log('Title:', title);
         console.log('Description:', description);
 
-        // You can perform any other actions here, such as sending the data to the backend
-    };
+    }
 
     return (
         <div className='p-16'>
