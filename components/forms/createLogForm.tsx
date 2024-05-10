@@ -1,11 +1,26 @@
 'use client'
-
+import '@/app/globals.css'
 import React, { useState } from 'react';
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
+
+import { logForm } from '@/backend/validation/form';
 
 const CreateLogForm = () => {
     const x = 4
-
-    
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
@@ -16,14 +31,43 @@ const CreateLogForm = () => {
 
     }
 
+    const form = useForm<z.infer<typeof logForm>>({
+        resolver: zodResolver(logForm),
+        defaultValues: {
+          title: "",
+          description: "",
+        },
+      })
+
 
     return (
+
         <div className='p-16'>
             <div className='bg-[#FFFFFF] rounded p-2'>
                 <div className='text-[32px]'>
                     Initial Assessment
                     <hr />
                 </div>
+        <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+        
+
+                <FormField
+                control={form.control}
+                name = 'title'
+                render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter title" {...field} />
+                      </FormControl>
+                      <FormDescription>
+                        This is your public display name.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 
                 <form className='py-8 px-4' onSubmit={handleSubmit}>
                     <div className='mb-4'>
@@ -67,7 +111,11 @@ const CreateLogForm = () => {
                         Submit
                     </button>
                 </form>
-            </div>
+            
+        
+        </form>
+        </Form>
+        </div>
         </div>
     )
 }

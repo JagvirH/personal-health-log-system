@@ -2,6 +2,7 @@ import React from 'react';
 //import LogCard from '@/components/Cards/LogCard';
 
 
+
 export default async function Sidebar({title, tags, description}) {
     //console.log(tags[0])
     return (

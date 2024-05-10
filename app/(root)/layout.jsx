@@ -3,6 +3,7 @@ import "../globals.css";
 import { ClerkProvider } from '@clerk/nextjs'
 import Sidebar from '@/components/layout_design/Sidebar'
 
+
 export default function RootLayout({ children }) {
   return (
 
