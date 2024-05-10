@@ -15,11 +15,12 @@ export default function Page() {
 
     }
 
+
     return (
         <div className='p-16'>
             <div className='bg-[#FFFFFF] rounded p-2'>
                 <div className='text-[32px]'>
-                    Whats the issue ?
+                    Initial Assessment
                     <hr />
                 </div>
                 
