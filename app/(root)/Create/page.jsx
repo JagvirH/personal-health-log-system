@@ -2,7 +2,8 @@
 
 import { getTag } from '@/backend/database/tags';
 import React, { useState } from 'react';
-import {createLogForm} from '@/backend/validation/form'
+import {logForm} from '@/backend/validation/form'
+import createLogForm from '@/components/forms/createLogForm';
 
 export default function Page() {
     const [title, setTitle] = useState('');
@@ -67,6 +68,7 @@ export default function Page() {
                     </button>
                 </form>
             </div>
+            <createLogForm />
         </div>
     );
 }
