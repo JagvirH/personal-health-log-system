@@ -15,11 +15,13 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import * as z from "zod";
+import { addLog } from '@/backend/database/logs';
+import { usePathname, useRouter } from "next/navigation";
 
 
 import { logForm } from '@/backend/validation/form';
 
-export default function CreateLogForm () {
+export default function CreateLogForm ({userId}) {
     const x = 4
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -29,6 +31,13 @@ export default function CreateLogForm () {
         console.log('Title:', title);
         console.log('Description:', description);
 
+        await addLog({
+            userId: userId ,
+            title: title,
+            description: description,
+        })
+
+        router.push("/Logs");
     }
 
     const form = useForm<z.infer<typeof logForm>>({
@@ -36,7 +45,9 @@ export default function CreateLogForm () {
         defaultValues: {
           title: "",
           description: "",
-        },
+        }, 
+
+        
       })
 
     

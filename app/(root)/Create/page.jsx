@@ -1,11 +1,16 @@
 import { getTag } from '@/backend/database/tags';
-
+import { currentUser } from "@clerk/nextjs/server";
 import {logForm} from '@/backend/validation/form'
 import CreateLogForm from '@/components/forms/createLogForm';
 
-export default function Page() {
+export default async function Page() {
+
+    const user = await currentUser()
+    if(!user) return null;
+
+    console.log(user?.id)
     
     return (
-            <CreateLogForm />
+            <CreateLogForm userId={user?.id} />
     );
 }
