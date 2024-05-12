@@ -1,7 +1,12 @@
 import React from 'react';
 import LogCard from '@/components/Cards/LogCard';
+import { getLogs } from '@/backend/database/logs';
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 export default async function Page() {
+
+    
+
     return (
         <div>
             <div className='page_title p-4'>
@@ -16,6 +21,9 @@ export default async function Page() {
 }
 
 export async function LogCardWrapper() {
+
+    const user = await currentUser()
+    if(!user) return null;
     // Assuming you have some logic to fetch log cards data from a data source
     const logCardsData = [
         { title: "Ear infection", tags: ["Eyes", "Pain"], description: "There is dry skin around the ear where i can't sleep and it hurts. taking the scab off make it bleed" },
@@ -25,6 +33,10 @@ export async function LogCardWrapper() {
         { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" }
         // Add more log card data as needed
     ];
+
+    const logs = await getLogs({userID : user?.id});
+
+    console.log(logs)
 
     return (
         <div className="flex flex-wrap">

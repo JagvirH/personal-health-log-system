@@ -1,11 +1,6 @@
 import React from 'react';
-//import LogCard from '@/components/Cards/LogCard';
-
-
-
 
 export default async function Sidebar({title, tags, description}) {
-    //console.log(tags[0])
     return (
         <div className='flex w-96 border hover: border-[#1479fd] rounded-xl '>
             <div className='bg-white rounded-xl p-4 flex-grow'>
@@ -20,12 +15,14 @@ export default async function Sidebar({title, tags, description}) {
                 <div className='mt-2 '>
                     Description:
                     <br />
-                    <div className='border'>
+                    <div className='border border-[#1479fd] rounded'>
                         {description.length > 86 ? description.slice(0, 86) + '...' : description}
                     </div>
                 </div>
-                <div className='blue_button p-2'>
-                    Edit
+                <div className='pt-1'>
+                    <div className='blue_button'>
+                        Edit
+                    </div>
                 </div>
             </div>
         </div>
