@@ -16,7 +16,7 @@ export default async function Sidebar({title, tags, description}) {
                     Description:
                     <br />
                     <div className='border border-[#1479fd] rounded'>
-                        {description.length > 86 ? description.slice(0, 86) + '...' : description}
+                        {description && description.length > 86 ? description.slice(0, 86) + '...' : description}
                     </div>
                 </div>
                 <div className='pt-1'>
