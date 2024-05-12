@@ -38,4 +38,8 @@
     .card_tag{
         @apply border border-[#1479fd] rounded-xl text-sm text-center p-1 text-[#1479fd]
     }
+
+    .log_card{
+        @apply flex w-48 
+    } 
 }

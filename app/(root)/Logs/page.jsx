@@ -18,20 +18,24 @@ export default async function Page() {
 export async function LogCardWrapper() {
     // Assuming you have some logic to fetch log cards data from a data source
     const logCardsData = [
-        { title: "Title 1", tags: ["Eyes", "Pain"], description: "Description 1 wemdjwekm d d d d d d d d d d d d d d d d d d dd " },
-        { title: "Title 2", tags: ["Ears", "Headache"], description: "Description 2" },
+        { title: "Ear infection", tags: ["Eyes", "Pain"], description: "There is dry skin around the ear where i can't sleep and it hurts. taking the scab off make it bleed" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" }
         // Add more log card data as needed
     ];
 
     return (
-        <>
+        <div className="flex flex-wrap">
             {logCardsData.map((logCard, index) => (
-                <div key={index} className='w-full p-4'>
+                <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 log_card'>
                     <LogCard title={logCard.title} tags={logCard.tags} description={logCard.description} />
                 </div>
             ))}
-        </>
+        </div>
     );
+    
 }
 
 
