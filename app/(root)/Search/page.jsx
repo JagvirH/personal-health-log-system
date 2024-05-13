@@ -9,8 +9,8 @@ export default async function Page() {
                 <hr />
             </div>
 
-            <div>
-                Hi
+            <div className='p-4'>
+                
                 <SearchLogForm />
             </div>
 
