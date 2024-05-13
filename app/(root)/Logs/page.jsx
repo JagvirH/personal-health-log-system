@@ -27,46 +27,49 @@ export async function LogCardWrapper() {
 
     const logs = await getLogs({userId : user?.id});
 
-    console.log("here ")
-    console.log(logs[0])
+    //console.log("here ")
+    //console.log(logs[0])
+
+    const logCardsData = [
+        { title: "Ear infection", tags: ["Eyes", "Pain"], description: "There is dry skin around the ear where i can't sleep and it hurts. taking the scab off make it bleed" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
+        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
+
+
+        // Add more log card data as needed
+    ];
 
     return (
         <main>
             
             <div className="flex flex-wrap">
                 {logs[0].map((logCard, index) => (
-                    <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 log_card'>
-                        <LogCard title={logCard.Title} tags={["1","2"]} description={logCard.Description} />
+                    <div key={index} className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/${logs[0].length < 3 ? 2 : 4} p-4 log_card`}>
+                        <LogCard title={logCard.Title} tags={["1", "2"]} description={logCard.Description} />
                     </div>
                 ))}
             </div>
+            
+            
+            
+
         </main>
         
-        
-
-
     );
     
 }
 
 
 /*
-
-const logCardsData = [
-        { title: "Ear infection", tags: ["Eyes", "Pain"], description: "There is dry skin around the ear where i can't sleep and it hurts. taking the scab off make it bleed" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" }
-        // Add more log card data as needed
-    ];
-
-    <div className="flex flex-wrap">
+<div className="flex flex-wrap">
                 {logCardsData.map((logCard, index) => (
                     <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 log_card'>
                         <LogCard title={logCard.title} tags={logCard.tags} description={logCard.description} />
                     </div>
                 ))}
             </div>
+
+
+    
 
 */

@@ -21,6 +21,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { logForm } from '@/backend/validation/form';
 
 export default function CreateLogForm ({userId}) {
+    const router = useRouter();
     const x = 4
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
