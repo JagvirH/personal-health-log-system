@@ -1,6 +1,8 @@
 import React from 'react';
+import Link from 'next/link'
 
-export default async function Sidebar({title, tags, description}) {
+export default async function Sidebar({title, tags, description, id}) {
+
     return (
         <div className='flex w-96 border hover: border-[#1479fd] rounded-xl '>
             <div className='bg-white rounded-xl p-4 flex-grow'>
@@ -20,9 +22,11 @@ export default async function Sidebar({title, tags, description}) {
                     </div>
                 </div>
                 <div className='pt-1'>
-                    <div className='blue_button'>
-                        Edit
-                    </div>
+                    <Link href={`Logs/${id}/Initial_Assessment`} >
+                        <div className='blue_button'>
+                            Edit
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

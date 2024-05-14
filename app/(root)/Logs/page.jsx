@@ -39,13 +39,15 @@ export async function LogCardWrapper() {
         // Add more log card data as needed
     ];
 
+    console.log(logs[0])
+
     return (
         <main>
             
             <div className="flex flex-wrap">
                 {logs[0].map((logCard, index) => (
                     <div key={index} className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/${logs[0].length < 3 ? 2 : 4} p-4 log_card`}>
-                        <LogCard title={logCard.Title} tags={["1", "2"]} description={logCard.Description} />
+                        <LogCard title={logCard.Title} tags={["1", "2"]} description={logCard.Description} id={logCard.Id}/>
                     </div>
                 ))}
             </div>
