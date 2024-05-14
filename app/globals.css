@@ -8,7 +8,7 @@
 
 @layer utilities {
 
-    
+
 
     .sidebar_background {
         @apply flex h-full bg-[#ffffff] text-center py-8 px-8;
@@ -45,4 +45,6 @@
     .log_card{
         @apply flex w-48 
     } 
+
+    
 }
