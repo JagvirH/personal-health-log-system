@@ -36,4 +36,27 @@ export async function getLogs({ userId }) {
     }
 }
 
+export async function checkIfUsersLog({ userId, logId }) {
+    let connection = await connectToDB();
+
+    const sql = `SELECT COUNT(*) as count FROM Logs WHERE Id = ? AND Users_Id = ?`;
+
+
+
+    const params = [logId, userId];
+
+    try {
+        const [rows] = await connection.query(sql, params);
+        const count = rows[0].count;
+        return count > 0 ? true : false;
+    } catch (error) {
+        console.error("Error checking users log:", error);
+        return false;
+    } finally {
+        // Close the database connection
+        connection.end();
+    }
+}
+
+
 
