@@ -23,7 +23,7 @@ export default async function Sidebar() {
                             {/* Map over the items array to generate list items */}
                             {items.map((item, index) => (
                                 <Link href={`/${item}`} >
-                                    <li key={index} className="sidebar_button p-4">
+                                    <li key={index} className="sidebar_button p-4 ">
                                     
                                         {item}
                                     
