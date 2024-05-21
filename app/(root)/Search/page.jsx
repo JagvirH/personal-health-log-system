@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchLogForm from '@/components/forms/searchLogForm';
+import SearchLayout from '@/components/layout_design/SearchLayout';
 
 export default async function Page() {
     return (
@@ -12,6 +13,10 @@ export default async function Page() {
             <div className='p-4'>
                 
                 <SearchLogForm />
+            </div>
+
+            <div>
+                <SearchLayout />
             </div>
 
         </main>
