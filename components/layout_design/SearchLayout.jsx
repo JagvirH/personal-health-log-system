@@ -21,12 +21,12 @@ export function SearchLayout({ searchTerm }) {
     }, [searchTerm]);
 
     return (
-        <div>
+        <div className="flex flex-wrap">
             <div className='bg-[green]'></div>
             {rankedLogs.map((log, index) => (
                 <div 
                     key={index} 
-                    className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/${rankedLogs.length < 3 ? 2 : 4} p-4 log_card`}
+                    className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 log_card"
                 >
                     <LogRankCard 
                         title={log.title} 
