@@ -1,8 +1,16 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import SearchLogForm from '@/components/forms/searchLogForm';
 import SearchLayout from '@/components/layout_design/SearchLayout';
 
-export default async function Page() {
+export default function Page() {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+    };
+
     return (
         <main>
             <div className='page_title p-4'>
@@ -11,14 +19,12 @@ export default async function Page() {
             </div>
 
             <div className='p-4'>
-                
-                <SearchLogForm />
+                <SearchLogForm onSearch={handleSearch} />
             </div>
 
             <div>
-                <SearchLayout />
+                <SearchLayout searchTerm={searchTerm} />
             </div>
-
         </main>
     );
 }

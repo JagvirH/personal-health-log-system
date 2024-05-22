@@ -17,8 +17,8 @@ export default async function getSimilarityRank(search) {
                 'Content-Type': 'application/json'  // Ensure the header is correctly set
             }
         });
-        console.log(response.data); // Log the entire response object
-        return response.data.greetings; // Access the 'greetings' key in the response data
+        //console.log(response.data); // Log the entire response object
+        return response.data; // Access the 'greetings' key in the response data
     } catch (error) {
         console.error('Error fetching personalized greetings:', error);
         throw error;

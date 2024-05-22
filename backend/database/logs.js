@@ -24,7 +24,7 @@ export async function getLogs({ userId }) {
     const sql = 'SELECT * FROM logs WHERE Users_Id = ?';
     try {
         const logs = await connection.query(sql, [userId]);
-        //console.log("Got logs");
+        console.log("Got logs");
         return logs;
     } catch (error) {
         console.log("Error with getting logs: ", error);
@@ -62,6 +62,7 @@ export async function getLogsForTextSimilarity() {
         const [rows] = await connection.query(sql);
         const logs = rows.map(row => ({
             id: row.Id,
+            title: row.Title,
             description: row.Description
         }));
         //console.log(logs);
