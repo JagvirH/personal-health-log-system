@@ -18,7 +18,7 @@ export default function Page() {
                 <hr />
             </div>
 
-            <div className='p-4'>
+            <div className='p-4 shadow-xl'>
                 <SearchLogForm onSearch={handleSearch} />
             </div>
 

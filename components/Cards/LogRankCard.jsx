@@ -4,7 +4,7 @@ const LogRankCard = ({ title, id, description, similarity }) => {
   return (
     <div className=''>
       
-        <div className='flex w-96 border hover: border-[#1479fd] rounded-xl '>
+        <div className='flex w-96 border hover: border-[#1479fd] rounded-xl shadow-xl'>
             <div className='bg-white rounded-xl p-4 flex-grow'>
                 <div className='log_card_title mt-2'>
                     {title}
