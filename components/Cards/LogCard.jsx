@@ -5,8 +5,8 @@ export default async function Sidebar({title, tags, description, id}) {
 
     return (
         <div className='flex w-96 border hover: border-[#1479fd] rounded-xl '>
-            <div className='bg-white rounded-xl p-4 flex-grow'>
-                <div className='log_card_title mt-2'>
+            <div className='bg-white rounded-xl p-2 flex-grow'>
+                <div className='log_card_title mt-2 flex justify-center items-center'>
                     {title}
                 </div>
                 <div className='mt-2'>
@@ -17,7 +17,7 @@ export default async function Sidebar({title, tags, description, id}) {
                 <div className='mt-2 '>
                     Description:
                     <br />
-                    <div className='border border-[#1479fd] rounded'>
+                    <div className='border border-[#1479fd] rounded main_background'>
                         {description && description.length > 86 ? description.slice(0, 86) + '...' : description}
                     </div>
                 </div>

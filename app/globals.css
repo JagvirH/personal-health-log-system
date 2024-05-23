@@ -29,7 +29,7 @@
     }
 
     .blue_button{
-        @apply flex justify-center items-center text-[white] text-center bg-[#1479fd] rounded-xl hover:shadow-2xl hover:bg-blue-700 border-transparent focus:ring-offset-2 focus:ring-indigo-500
+        @apply flex justify-center items-center text-[white] p-1 text-center bg-[#1479fd] rounded-xl hover:shadow-2xl hover:bg-blue-700 border-transparent focus:ring-offset-2 focus:ring-indigo-500
     }
 
     .log_card_title{

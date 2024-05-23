@@ -5,8 +5,6 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 
 export default async function Page() {
 
-    
-
     return (
         <div>
             <div className='page_title p-4'>
@@ -46,11 +44,12 @@ export async function LogCardWrapper() {
             
             <div className="flex flex-wrap">
                 {logs[0].map((logCard, index) => (
-                    <div key={index} className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/${logs[0].length < 3 ? 2 : 4} p-4 log_card`}>
-                        <LogCard title={logCard.Title} tags={["1", "2"]} description={logCard.Description} id={logCard.Id}/>
+                    <div key={index} className="w-full sm:w-1/2 md:w-1/3 p-4 log_card">
+                        <LogCard title={logCard.Title} tags={["Ear", "Leg"]} description={logCard.Description} id={logCard.Id}/>
                     </div>
                 ))}
             </div>
+
             
             
             
