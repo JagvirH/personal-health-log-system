@@ -1,34 +1,25 @@
-"use client"
-
 import { Inter } from "next/font/google";
 import "../../../globals.css";
-import { ClerkProvider } from '@clerk/nextjs'
-import { useRouter } from "next/navigation";
-import { auth, currentUser } from "@clerk/nextjs/server";
-
-
-
+import { ClerkProvider } from '@clerk/nextjs';
+import { currentUser } from "@clerk/nextjs/server";
+import { getlog } from "@/backend/database/logs";
 
 export default async function RootLayout({ children, params }) {
-  /*
-  const router = useRouter();
+    console.log("here");
+    console.log(params.LogId);
+    const logId = params.LogId;
 
-  const logId = params.LogId
-  const user = await currentUser()
-  
-  if(!user) return null;
-  const userId = user?.id;
+    // Await the getlog function to retrieve log data
+    const log = await getlog(logId);
 
-  const checkIfLogEqUsers = await checkIfUsersLog({userId,logId})
+    console.log(log);
 
-  //console.log(checkIfLogEqUsers)
-
-  */
-
-  return (
-    <div>
-      {children }
-    </div>
-  );
-
+    return (
+        <div>
+            <div>
+              
+            </div>
+            {children}
+        </div>
+    );
 }

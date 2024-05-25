@@ -20,11 +20,13 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { logForm } from '@/backend/validation/form';
 
-export default function CreateLogForm ({userId}) {
+export default function CreateLogForm ({userId, tags}) {
     const router = useRouter();
     const x = 4
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+
+    console.log(tags)
 
     const handleSubmit = async (event) => {
         event.preventDefault();

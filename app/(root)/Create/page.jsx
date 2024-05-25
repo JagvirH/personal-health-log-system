@@ -11,9 +11,9 @@ export default async function Page() {
     console.log(user?.id)
 
     const listOfTags = await getTag()
-    console.log(listOfTags)
+    //console.log(listOfTags)
     
     return (
-            <CreateLogForm userId={user?.id} />
+            <CreateLogForm userId={user?.id} tags={listOfTags}/>
     );
 }

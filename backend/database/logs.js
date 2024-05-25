@@ -54,6 +54,30 @@ export async function checkIfUsersLog({ userId, logId }) {
     }
 }
 
+export async function getlog(logId) { 
+    let connection;
+
+    try {
+        connection = await connectToDB();
+        const sql = 'SELECT * FROM Logs WHERE Id = ?';
+        
+        const [results] = await connection.execute(sql, [logId]); // Use execute for parameterized queries
+
+        if (results.length === 0) {
+            return null; // No log found
+        }
+
+        return results[0]; // Assuming you want to return the single log entry
+    } catch (error) {
+        console.error("Error getting log:", error);
+        return false;
+    } finally {
+        if (connection) {
+            connection.end();
+        }
+    }
+}
+
 export async function getLogsForTextSimilarity() {
     let connection = await connectToDB();
     const sql = `SELECT * FROM Logs`;

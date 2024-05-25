@@ -21,7 +21,7 @@ export function SearchLayout({ searchTerm }) {
     }, [searchTerm]);
 
     return (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap ">
             <div className='bg-[green]'></div>
             {rankedLogs.map((log, index) => (
                 <div 
