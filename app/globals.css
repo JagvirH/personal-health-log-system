@@ -12,6 +12,14 @@
         @apply flex h-full bg-[#ffffff] text-center py-8 px-8;
     }
 
+    .bg-white{
+        @apply bg-[#ffffff]
+    }
+
+    .bg-blue{
+        @apply bg-[#1479fd]
+    }
+
     .sidebar_button{
         @apply py-4 px-4 hover:bg-[#1479fd] hover:text-[white] cursor-pointer rounded-xl font-medium;
     }

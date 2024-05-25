@@ -16,7 +16,10 @@ export default async function RootLayout({ children, params }) {
 
     return (
         <div>
-            <div>
+            <div className="p-8">
+              <div className="bg-white p-4 text-[50px] rounded-xl border border-[#1479fd]">
+                {log.Title}
+              </div>
               
             </div>
             {children}
