@@ -6,7 +6,7 @@ const Page = ({ params }) => {
     
     return (
         <div>
-            Hello
+            yh well come back to this 
         </div>
     );
 };

@@ -9,6 +9,9 @@ export default async function Page() {
     if(!user) return null;
 
     console.log(user?.id)
+
+    const listOfTags = await getTag()
+    console.log(listOfTags)
     
     return (
             <CreateLogForm userId={user?.id} />

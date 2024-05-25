@@ -40,16 +40,6 @@ export default function CreateLogForm ({userId}) {
         router.push("/Logs");
     }
 
-    const form = useForm<z.infer<typeof logForm>>({
-        resolver: zodResolver(logForm),
-        defaultValues: {
-          title: "",
-          description: "",
-        }, 
-
-        
-      })
-
     
 
     return (
@@ -59,7 +49,7 @@ export default function CreateLogForm ({userId}) {
                     Initial Assessment
                     <hr />
                 </div>
-                <Form {...form}>
+                <Form >
                 <form className='py-8 px-4' onSubmit={handleSubmit}>
                     <div className='mb-4'>
                         <label className='block text-sm font-medium text-gray-700'>Title</label>
