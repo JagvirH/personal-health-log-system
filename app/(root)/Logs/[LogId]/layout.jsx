@@ -19,12 +19,30 @@ export default async function RootLayout({ children, params }) {
         <div> 
             <div className="p-8">
               <div className="bg-white p-4 text-[50px] rounded-xl ">
-                {log.Title} Hi
+                {log.Title} 
+              </div>
+              <div className="pt-4">
+                <div className="bg-[white]">
+                  Tags: 
+                </div>
               </div>
 
-              <div className="flex">
-                <div className="w-1/4 p-2">
-                  Initial assessment 
+              <div className="flex pt-4">
+                <div className="w-1/4 p-2 border border-[#b5bac9] rounded-xl h-full justify-center items-center">
+                  Pages: 
+                  <div className="blue_button p-4">
+                    Initial assessment 
+                  </div>
+                  <div className="blue_button p-4">
+                    Professional Opinion
+                  </div>
+                  <div className="blue_button p-4">
+                    Journey 
+                  </div>
+                  <div className="blue_button p-4">
+                    Best solution 
+                  </div>
+                  
                 </div>
               <div className="w-3/4">
                 {children}
