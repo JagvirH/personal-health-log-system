@@ -12,7 +12,7 @@ export default async function Sidebar() {
     const items = ['Home', 'Logs', 'Search'];
 
     return (
-        <div className='sidebar_background rounded-r-lg'>
+        <div className='sidebar_background rounded-r-xl border border-[#1479fd]'>
             <div className='flex h-screen'>
                 <div className='h-full'>
                     <div className='blue_text_title underline underline-offset-4'>
