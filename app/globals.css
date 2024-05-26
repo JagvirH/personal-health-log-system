@@ -20,6 +20,10 @@
         @apply bg-[#1479fd]
     }
 
+    .border-grey{
+        @apply border border-[#b5bac9] rounded-xl p-1
+    }
+
     .sidebar_button{
         @apply py-4 px-4 hover:bg-[#1479fd] hover:text-[white] cursor-pointer rounded-xl font-medium;
     }

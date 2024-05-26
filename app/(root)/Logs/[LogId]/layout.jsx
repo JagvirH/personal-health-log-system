@@ -3,17 +3,15 @@ import "../../../globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
 import { currentUser } from "@clerk/nextjs/server";
 import { getlog } from "@/backend/database/logs";
+import Image from 'next/image';
+
+
+
 
 export default async function RootLayout({ children, params }) {
-    console.log("here");
-    console.log(params.LogId);
-    const logId = params.LogId;
 
-    // Await the getlog function to retrieve log data - border border-[#1479fd]
+    const logId = params.LogId;
     const log = await getlog(logId);
-    console.log("-----------")
-    console.log(log);
-    console.log("-----------")
 
     return (
         <div> 
@@ -22,15 +20,21 @@ export default async function RootLayout({ children, params }) {
                 {log.Title} 
               </div>
               <div className="pt-4">
-                <div className="bg-[white]">
+                <div className="border-grey p-1">
                   Tags: 
                 </div>
               </div>
 
               <div className="flex pt-4">
-                <div className="w-1/4 p-2 border border-[#b5bac9] rounded-xl h-full justify-center items-center">
+                <div className="w-1/4 p-2 border-grey h-full justify-center items-center">
                   Pages: 
                   <div className="blue_button p-4">
+                  <Image 
+                            src="/assessment-alt.png" 
+                            alt="Assessment" 
+                            width={50} 
+                            height={50} 
+                        />
                     Initial assessment 
                   </div>
                   <div className="blue_button p-4">
