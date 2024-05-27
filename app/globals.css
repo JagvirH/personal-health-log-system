@@ -60,6 +60,15 @@
         @apply text-[#e1e8ed]
     }
 
+
+    /* Add hover effect */
+  
+
+  .hover-container:hover .hover-text {
+    @apply font-bold bg-[1479fd];
+  }
+
+
     
 }
 

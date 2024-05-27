@@ -4,6 +4,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { currentUser } from "@clerk/nextjs/server";
 import { getlog } from "@/backend/database/logs";
 import Image from 'next/image';
+import LogSidebar from "@/components/layout_design/LogSidebar";
 
 
 
@@ -26,33 +27,12 @@ export default async function RootLayout({ children, params }) {
               </div>
 
               <div className="flex pt-4">
-                <div className="w-1/4 p-2 border-grey h-full justify-center items-center">
-                  Pages: 
-                  <div className="blue_button p-4">
-                  <Image 
-                            src="/assessment-alt.png" 
-                            alt="Assessment" 
-                            width={50} 
-                            height={50} 
-                        />
-                    Initial assessment 
-                  </div>
-                  <div className="blue_button p-4">
-                    Professional Opinion
-                  </div>
-                  <div className="blue_button p-4">
-                    Journey 
-                  </div>
-                  <div className="blue_button p-4">
-                    Best solution 
-                  </div>
-                  
+                <div className="w-[180px] h-full p-2 h-full justify-center items-center " >
+                  <LogSidebar />
                 </div>
               <div className="w-3/4">
                 {children}
               </div>
-            
-            
 
             </div>
               
