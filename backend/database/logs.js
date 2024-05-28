@@ -101,5 +101,19 @@ export async function getLogsForTextSimilarity() {
 
 }
 
+export async function editLogDescription(Id) {
+    let connection = await connectToDB();
+    const sql = `UPDATE Logs SET Description = ? WHERE Id = ?`;
+
+    try {
+        await connection.query(sql, Id)
+        console.log("Changed")
+    } catch (error) {
+        console.log("Error with adding log: ", error)
+    } finally {
+        connection.close();
+    }
+
+}
 
 

@@ -1,4 +1,5 @@
 "use client"
+import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 
 const LogEditDescription = ({ description }) => {
@@ -13,12 +14,18 @@ const LogEditDescription = ({ description }) => {
     setCurrentDescription(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('New Description:', currentDescription);
 
-    
+    await editLogDescription({
+        Id : "",
+        Description: currentDescription
+    })
+
   };
+
+  
 
   return (
     <div className='flex flex-col'>
