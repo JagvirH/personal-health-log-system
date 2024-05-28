@@ -2,7 +2,7 @@
 import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 
-const LogEditDescription = ({ description }) => {
+const LogEditDescription = ({ Id, description }) => {
   const [currentDescription, setCurrentDescription] = useState(description);
   const [isChanged, setIsChanged] = useState(false);
 
@@ -19,7 +19,7 @@ const LogEditDescription = ({ description }) => {
     console.log('New Description:', currentDescription);
 
     await editLogDescription({
-        Id : "",
+        Id : Id,
         Description: currentDescription
     })
 

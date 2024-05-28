@@ -12,7 +12,7 @@ const Page = async ({ params }) => {
         <div className='w-full flex flex-col'>
             
             <div>
-                <LogEditDescription description={log.Description}/>
+                <LogEditDescription Id= {logId} description={log.Description}/>
             </div>
             
             
