@@ -105,8 +105,10 @@ export async function editLogDescription(Id, Description) {
     let connection = await connectToDB();
     const sql = `UPDATE Logs SET Description = ? WHERE Id = ?`;
 
+    const check = [Id, Description]
+
     try {
-        await connection.query(sql, [Description, Id]);
+        await connection.query(sql,  check);
         console.log("Changed");
     } catch (error) {
         console.log("Error with updating log: ", error);
