@@ -24,7 +24,7 @@ export async function getLogs({ userId }) {
     const sql = 'SELECT * FROM logs WHERE Users_Id = ?';
     try {
         const logs = await connection.query(sql, [userId]);
-        console.log("Got logs");
+        //console.log("Got logs");
         return logs;
     } catch (error) {
         console.log("Error with getting logs: ", error);
@@ -117,4 +117,44 @@ export async function editLogDescription(Id, Description) {
     }
 }
 
+export async function getLogsId({ userId, title, description }) {
+    let connection = await connectToDB();
+    const sql = `SELECT * FROM Logs WHERE Users_Id = ? AND Title = ? AND Description = ?`;
+
+    const check = [userId, title, description];
+    try {
+        const [rows] = await connection.query(sql, check);
+        //console.log("HERE --", rows);  // This logs the array of objects directly
+
+        // If you want to log each individual log entry:
+
+        return rows;  // Assuming you want to return all matching logs
+    } catch (error) {
+        console.log("Error with fetching logs: ", error);
+    } finally {
+        connection.close();
+    }
+}
+
+
+
+/*
+
+export async function getLogsId({userId,title, description }){
+    let connection = await connectToDB();
+    const sql = `SELECT * FROM Logs WHERE Users_Id = ? and Title = ? and Description = ?`;
+
+    const check = [userId,title, description]
+    try {
+        const logId = await connection.query(sql, check );
+        console.log("HERE --" +logId)
+        return logId[0];
+    } catch (error) {
+        console.log("Error with updating log: ", error);
+    } finally {
+        connection.close();
+    }
+
+}
+*/
 

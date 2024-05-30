@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { addLog } from '@/backend/database/logs';
 import { usePathname, useRouter } from "next/navigation";
+import { addTags } from '@/backend/database/tags';
 
 export default function CreateLogForm ({userId, tags}) {
     const router = useRouter();
@@ -34,6 +35,13 @@ export default function CreateLogForm ({userId, tags}) {
             description: description,
             //tags: selectedTagIds, // Sending tag IDs
         });
+
+        await addTags({
+            userId: userId,
+            title: title,
+            description: description,
+            tags: selectedTagIds
+        })
 
         router.push("/Logs");
     }
@@ -94,7 +102,7 @@ export default function CreateLogForm ({userId, tags}) {
                             </div>
                             <div className='mt-4 flex flex-wrap'>
                                 {selectedTagIds.map((tagId, index) => (
-                                    <div key={index} className='bg-blue-100 text-blue-800 rounded-md px-2 py-1 mr-2 mb-2'>
+                                    <div key={index} className='card_tag px-2 py-1 mr-2 mb-2'>
                                         {tags.find(tag => tag.Id === tagId).Title}
                                     </div>
                                 ))}

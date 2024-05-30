@@ -53,7 +53,7 @@
     }
     
     .card_tag{
-        @apply border border-[#1479fd] rounded-xl text-sm text-center p-1 text-[#1479fd]
+        @apply border border-[#1479fd] rounded-xl text-sm text-center p-1 text-[#1479fd] bg-[#e1e8ed]
     }
 
     .log_card{

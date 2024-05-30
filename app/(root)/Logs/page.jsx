@@ -37,7 +37,7 @@ export async function LogCardWrapper() {
         // Add more log card data as needed
     ];
 
-    console.log(logs[0])
+    //console.log(logs[0])
 
     return (
         <main>
