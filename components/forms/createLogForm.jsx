@@ -20,19 +20,19 @@ export default function CreateLogForm ({userId, tags}) {
     const router = useRouter();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [selectedTags, setSelectedTags] = useState([]);
+    const [selectedTagIds, setSelectedTagIds] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('Title:', title);
         console.log('Description:', description);
-        console.log('Selected Tags:', selectedTags);
+        console.log('Selected Tag IDs:', selectedTagIds);
 
         await addLog({
             userId: userId,
             title: title,
             description: description,
-            tags: selectedTags, // Assuming the backend is expecting tags as well
+            //tags: selectedTagIds, // Sending tag IDs
         });
 
         router.push("/Logs");
@@ -40,8 +40,8 @@ export default function CreateLogForm ({userId, tags}) {
 
     const handleTagChange = (e) => {
         const { value, checked } = e.target;
-        setSelectedTags(prev => 
-            checked ? [...prev, value] : prev.filter(tag => tag !== value)
+        setSelectedTagIds(prev => 
+            checked ? [...prev, parseInt(value)] : prev.filter(tagId => tagId !== parseInt(value))
         );
     }
 
@@ -77,18 +77,25 @@ export default function CreateLogForm ({userId, tags}) {
                         </div>
                         <div className='mb-4'>
                             <label className='block text-sm font-medium text-gray-700'>Tags</label>
-                            <div className='flex flex-wrap'>
+                            <div className='max-h-40 overflow-y-auto border border-gray-300 rounded-md p-2'>
                                 {tags.map(tag => (
-                                    <div key={tag.Id} className='mr-4'>
+                                    <div key={tag.Id} className='mr-4 mb-2'>
                                         <label className='inline-flex items-center'>
                                             <input
                                                 type='checkbox'
-                                                value={tag.Title}
+                                                value={tag.Id}
                                                 onChange={handleTagChange}
                                                 className='form-checkbox'
                                             />
                                             <span className='ml-2'>{tag.Title}</span>
                                         </label>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className='mt-4 flex flex-wrap'>
+                                {selectedTagIds.map((tagId, index) => (
+                                    <div key={index} className='bg-blue-100 text-blue-800 rounded-md px-2 py-1 mr-2 mb-2'>
+                                        {tags.find(tag => tag.Id === tagId).Title}
                                     </div>
                                 ))}
                             </div>
@@ -101,16 +108,6 @@ export default function CreateLogForm ({userId, tags}) {
                         </button>
                     </form>
                 </Form>
-                <div className='mt-4'>
-                    <h3 className='text-sm font-medium text-gray-700'>Selected Tags:</h3>
-                    <ul>
-                        {selectedTags.map((tag, index) => (
-                            <li key={index} className='text-sm text-gray-700'>
-                                {tag}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
             </div>
         </div>
     );
