@@ -52,4 +52,24 @@ export async function addTags({ userId, title, description, tags }) {
     }
 }
 
+export async function getTagLabel({Id}){
+    let connection = await connectToDB();
+
+    const sql = "SELECT * FROM Tags WHERE Id = ?"
+
+    try {
+        // Execute the SQL statement with the provided values
+        const [tagList] = await connection.query(sql, Id);
+        //console.log('Got Tags');
+        return tagList
+    } catch (error) {
+        console.error('Error getting tags', error);
+    } finally {
+        // Close the database connection
+        connection.close();
+    }
+
+}
+
+
 
