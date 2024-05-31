@@ -118,23 +118,25 @@ export async function editLogDescription(Id, Description) {
 }
 
 export async function getLogsId({ userId, title, description }) {
-    let connection = await connectToDB();
-    const sql = `SELECT * FROM Logs WHERE Users_Id = ? AND Title = ? AND Description = ?`;
-
-    const check = [userId, title, description];
+    let connection;
     try {
-        const [rows] = await connection.query(sql, check);
-        //console.log("HERE --", rows);  // This logs the array of objects directly
+        connection = await connectToDB();
+        const sql = `SELECT * FROM Logs WHERE Users_Id = ? AND Title = ? AND Description = ?`;
+        const check = [userId, title, description];
 
-        // If you want to log each individual log entry:
+        const [rows] = await connection.query(sql, check);
+        console.log("HERE --", rows);  // Logs the array of objects directly
 
         return rows;  // Assuming you want to return all matching logs
     } catch (error) {
         console.log("Error with fetching logs: ", error);
     } finally {
-        connection.close();
+        if (connection) {
+            await connection.end();  // Ensures the connection is closed properly
+        }
     }
 }
+
 
 
 

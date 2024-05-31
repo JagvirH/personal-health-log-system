@@ -23,18 +23,33 @@ export async function getTag() {
 }
 
 export async function addTags({ userId, title, description, tags }) {
-    let connection = await connectToDB();
+    let connection;
+    try {
+        connection = await connectToDB();
 
-    const [log] = await getLogsId({ userId, title, description });
+        const [log] = await getLogsId({ userId, title, description });
+        //console.log(log[0])
+        console.log("HERE")
+        if (log) {
+            const logId = log.Id;  // Assuming the log object has an 'Id' field
+            console.log("HERE IS THE NEW ID:  ---> " + logId);
 
-    if (log) {
-        const logId = log.Id;  // Assuming the log object has an 'Id' field
-        console.log("HERE IS THE NEW ID:  ---> " + logId);
-    } else {
-        console.log("No log found matching the provided criteria.");
+            const sql = 'INSERT INTO Log_Tags (LogId, TagId) VALUES (?, ?)';
+
+            for (const tagId of tags) {
+                await connection.query(sql, [logId, tagId]);
+            }
+            console.log("Tags successfully added to Log_Tags.");
+        } else {
+            console.log("No log found matching the provided criteria.");
+        }
+    } catch (error) {
+        console.error("An error occurred while adding tags:", error);
+    } finally {
+        if (connection) {
+            connection.end();
+        }
     }
-
-    const sql = 'SELECT * FROM Tags';
-    // Execute the query to fetch tags and any additional logic
 }
+
 

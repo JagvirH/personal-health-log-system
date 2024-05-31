@@ -29,12 +29,15 @@ export default function CreateLogForm ({userId, tags}) {
         console.log('Description:', description);
         console.log('Selected Tag IDs:', selectedTagIds);
 
+        
         await addLog({
             userId: userId,
             title: title,
             description: description,
             //tags: selectedTagIds, // Sending tag IDs
         });
+
+        
 
         await addTags({
             userId: userId,
