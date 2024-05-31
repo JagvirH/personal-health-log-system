@@ -19,45 +19,27 @@ export default async function Page() {
 }
 
 export async function LogCardWrapper() {
+    const user = await currentUser();
+    if (!user) return null;
 
-    const user = await currentUser()
-    if(!user) return null;
-
-    const logs = await getLogs({userId : user?.id});
-
-    //console.log("here ")
-    //console.log(logs[0])
-
-    const logCardsData = [
-        { title: "Ear infection", tags: ["Eyes", "Pain"], description: "There is dry skin around the ear where i can't sleep and it hurts. taking the scab off make it bleed" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
-        { title: "Leg muscle", tags: ["Ears", "Headache"], description: "Description 2" },
-
-
-        // Add more log card data as needed
-    ];
-
-    //console.log(logs[0])
+    const logs = await getLogs({ userId: user.id });
 
     return (
         <main>
-            
             <div className="flex flex-wrap">
-                {logs[0].map((logCard, index) => (
-                    <div key={index} className="w-full sm:w-1/2 md:w-1/3 p-4 log_card">
-                        <LogCard title={logCard.Title} tags={["Ear", "Leg"]} description={logCard.Description} id={logCard.Id}/>
+                {logs.map((log) => (
+                    <div key={log.id} className="w-full sm:w-1/2 md:w-1/3 p-4 log_card">
+                        <LogCard 
+                            title={log.title} 
+                            tags={log.tags.map(tag => tag.title)} 
+                            description={log.description} 
+                            id={log.id}
+                        />
                     </div>
                 ))}
             </div>
-
-            
-            
-            
-
         </main>
-        
     );
-    
 }
 
 

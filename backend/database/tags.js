@@ -71,5 +71,12 @@ export async function getTagLabel({Id}){
 
 }
 
+export async function getLogTags({Id}){
 
+    let connection = await connectToDB();
+
+    
+    
+
+}
 
