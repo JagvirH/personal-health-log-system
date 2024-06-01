@@ -20,9 +20,10 @@ const LogSidebar = () => {
           key={index}
           className="flex flex-col items-center my-8 " 
           onMouseEnter={() => {
-            console.log(`Hovered over: ${item.title}`);
-            console.log(`Image path: ${hoveredItem === index ? item.hoverImageSrc : item.imageSrc}`);
+            //console.log(`Hovered over: ${item.title}`);
+            //console.log(`Image path: ${hoveredItem === index ? item.hoverImageSrc : item.imageSrc}`);
             setHoveredItem(index);
+            
           }} 
           onMouseLeave={() => setHoveredItem(null)}
         >

@@ -6,13 +6,16 @@ const Page = async ({ params }) => {
 
     const logId = params.LogId;
     const log = await getlog(logId);
-    console.log(log.Description)
+    
     
     return (
         <div className='w-full flex flex-col'>
             
             <div>
                 <LogEditDescription Id= {logId} description={log.Description}/>
+                <div>
+
+                </div>
             </div>
             
             
