@@ -29,7 +29,7 @@ export default async function RootLayout({ children, params }) {
 
               <div className="flex pt-4">
                 <div className="w-[180px] h-full p-2 h-full justify-center items-center " >
-                  <LogSidebar />
+                  <LogSidebar logId = {logId} />
                 </div>
               <div className="w-3/4">
                 {children}

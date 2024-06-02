@@ -2,15 +2,18 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-const LogSidebar = () => {
+const LogSidebar = ({logId}) => {
   const [hoveredItem, setHoveredItem] = useState(null);
 
+  console.log("Here is the log id: " +logId)
+
   const menuItems = [
-    { title: 'Initial assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },
-    { title: 'Professional Opinion', imageSrc: '/user-md-chat.png', hoverImageSrc: '/user-md-chat-full.png' },
+    { title: 'Initial_Assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },
+    { title: 'Professional_Opinion', imageSrc: '/user-md-chat.png', hoverImageSrc: '/user-md-chat-full.png' },
     { title: 'Journey', imageSrc: '/journey.png', hoverImageSrc: '/journey-full.png' },
-    { title: 'Best solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
+    { title: 'Your_solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
   ];
 
   return (
@@ -21,20 +24,23 @@ const LogSidebar = () => {
           className="flex flex-col items-center my-8 " 
           onMouseEnter={() => {
             //console.log(`Hovered over: ${item.title}`);
-            //console.log(`Image path: ${hoveredItem === index ? item.hoverImageSrc : item.imageSrc}`);
+            //console.log(`Image path: ${hoveredItem === index ? item.hoverImageSrc : item.imageSrc}`);  
             setHoveredItem(index);
-            
           }} 
           onMouseLeave={() => setHoveredItem(null)}
         >
           <div>
-            <Image 
-              src={hoveredItem === index ? item.hoverImageSrc : item.imageSrc} 
-              alt={item.title} 
-              width={70} 
-              height={70} 
-              className="hover-image"
-            />
+            <Link href={`/Logs/${logId}/${item.title}`}>
+              
+                <Image 
+                  src={hoveredItem === index ? item.hoverImageSrc : item.imageSrc} 
+                  alt={item.title} 
+                  width={70} 
+                  height={70} 
+                  className="hover-image"
+                />
+              
+            </Link>
           </div>
           <div className={`hover-text ${hoveredItem === index ? 'font-bold' : ''} mt-2`}>
             {item.title}
