@@ -13,7 +13,7 @@ export default async function RootLayout({ children, params }) {
 
     const logId = params.LogId;
     const log = await getlog(logId);
-    console.log(log.Description)
+    //console.log(log.Tags)
 
     return (
         <div> 
@@ -23,8 +23,13 @@ export default async function RootLayout({ children, params }) {
               </div>
               <div className="pt-4">
                 <div className="border-grey p-1">
-                  Tags: 
-                </div>
+                        Tags: 
+                        {log.Tags.map(tag => (
+                            <span key={tag.Id} className="tag-item ">
+                                {tag.Title}
+                            </span>
+                        ))}
+                  </div>
               </div>
 
               <div className="flex pt-4">
