@@ -53,7 +53,7 @@
     }
     
     .card_tag{
-        @apply border border-[#1479fd] rounded-xl text-sm text-center p-1 text-[#1479fd] bg-[#e1e8ed]
+        @apply border border-[#1479fd] rounded-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
     }
 
     .log_card{
@@ -62,6 +62,10 @@
 
     .grey-text{
         @apply text-[#e1e8ed]
+    }
+
+    .md-text{
+        @apply text-lg
     }
 
 

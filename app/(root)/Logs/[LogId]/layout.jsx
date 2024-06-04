@@ -22,11 +22,13 @@ export default async function RootLayout({ children, params }) {
                 {log.Title} 
               </div>
               <div className="pt-4">
-                <div className="border-grey p-1">
-                        Tags: 
+                <div className="border-grey p-2 flex items-center">
+                        <div className="justify-center items-center p-1 md-text">Tags: </div>
                         {log.Tags.map(tag => (
-                            <span key={tag.Id} className="tag-item ">
+                            <span key={tag.Id} className="tag-item px-1 ">
+                                <div className="card_tag">
                                 {tag.Title}
+                                </div>  
                             </span>
                         ))}
                   </div>
