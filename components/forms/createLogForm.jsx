@@ -37,8 +37,6 @@ export default function CreateLogForm ({userId, tags}) {
             //tags: selectedTagIds, // Sending tag IDs
         });
 
-        
-
         await addTags({
             userId: userId,
             title: title,

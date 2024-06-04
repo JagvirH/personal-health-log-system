@@ -109,7 +109,7 @@ export async function checkIfUsersLog({ userId, logId }) {
         connection.end();
     }
 }
-
+/*
 export async function getlog(logId) { 
     let connection;
 
@@ -133,6 +133,55 @@ export async function getlog(logId) {
         }
     }
 }
+*/
+
+export async function getlog(logId) {
+    let connection;
+
+    try {
+        connection = await connectToDB();
+        
+        // Query to get the log along with its associated tags
+        const sql = `
+            SELECT 
+                Logs.Id AS logId, 
+                Logs.Users_Id AS userId, 
+                Logs.Title AS logTitle, 
+                Logs.Description AS logDescription, 
+                Tags.Id AS tagId, 
+                Tags.Title AS tagTitle 
+            FROM Logs 
+            LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
+            LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
+            WHERE Logs.Id = ?
+        `;
+        
+        const [results] = await connection.execute(sql, [logId]);
+
+        if (results.length === 0) {
+            return null; // No log found
+        }
+
+        // Extract log details and tags
+        const logDetails = {
+            Id: results[0].logId,
+            Users_Id: results[0].userId,
+            Title: results[0].logTitle,
+            Description: results[0].logDescription,
+            Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null) // Filter out null tags
+        };
+
+        return logDetails;
+    } catch (error) {
+        console.error("Error getting log:", error);
+        return false;
+    } finally {
+        if (connection) {
+            connection.end();
+        }
+    }
+}
+
 
 export async function getLogsForTextSimilarity() {
     let connection = await connectToDB();
