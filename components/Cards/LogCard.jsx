@@ -9,9 +9,10 @@ export default async function Sidebar({title, tags, description, id}) {
                 <div className='log_card_title mt-2 flex justify-center items-center'>
                     {title}
                 </div>
-                <div className='mt-2'>
+                <div className='mt-2 flex'>
                     Tags: {tags.map((tag, index) => (
-                        <span key={index} className='card_tag pl-2'>{tag}</span>
+                        <div className='px-1'><span key={index} className='card_tag pl-2'>{tag}</span> </div>
+                        
                     ))}
                 </div>
                 <div className='mt-2 '>
