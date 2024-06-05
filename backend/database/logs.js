@@ -150,7 +150,7 @@ export async function getlog(logId) {
                 Logs.Description AS logDescription, 
                 Logs.Status AS logStatus,
                 Tags.Id AS tagId, 
-                Tags.Title AS tagTitle 
+                Tags.Title AS tagTitle
             FROM Logs 
             LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
             LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
@@ -163,14 +163,17 @@ export async function getlog(logId) {
             return null; // No log found
         }
 
+        console.log("Here -->"  + results[0].logStatus)
+
         // Extract log details and tags
         const logDetails = {
             Id: results[0].logId,
             Users_Id: results[0].userId,
             Title: results[0].logTitle,
             Description: results[0].logDescription,
+            
+            Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null), // Filter out null tags
             Status: results[0].logStatus,
-            Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null) // Filter out null tags
         };
 
         return logDetails;

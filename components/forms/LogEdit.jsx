@@ -3,7 +3,7 @@ import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 
-const LogEditDescription = ({ Id, description }) => {
+const LogEdit = ({ Id, description, status }) => {
   const router = useRouter();
   const [currentDescription, setCurrentDescription] = useState(description);
   const [isChanged, setIsChanged] = useState(false);
@@ -29,6 +29,7 @@ const LogEditDescription = ({ Id, description }) => {
 
   };
 
+  console.log(status)
   
 
   return (
@@ -50,8 +51,11 @@ const LogEditDescription = ({ Id, description }) => {
           Save
         </button>
       </form>
+      <div className='bg-[green]'>
+        {status}
+      </div>
     </div>
   );
 };
 
-export default LogEditDescription;
+export default LogEdit;
