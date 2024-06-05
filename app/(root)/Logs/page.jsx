@@ -34,6 +34,7 @@ export async function LogCardWrapper() {
                             tags={log.tags.map(tag => tag.title)} 
                             description={log.description} 
                             id={log.id}
+                            //status={log.status}
                         />
                     </div>
                 ))}

@@ -148,6 +148,7 @@ export async function getlog(logId) {
                 Logs.Users_Id AS userId, 
                 Logs.Title AS logTitle, 
                 Logs.Description AS logDescription, 
+                Logs.Status AS logStatus,
                 Tags.Id AS tagId, 
                 Tags.Title AS tagTitle 
             FROM Logs 
@@ -168,6 +169,7 @@ export async function getlog(logId) {
             Users_Id: results[0].userId,
             Title: results[0].logTitle,
             Description: results[0].logDescription,
+            Status: results[0].logStatus,
             Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null) // Filter out null tags
         };
 
