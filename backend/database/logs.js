@@ -6,11 +6,11 @@ import { connectToDB } from "@/backend/database/mySql";
 export async function addLog({userId, title, description}) {
     let connection = await connectToDB();
 
-    const sql = 'INSERT INTO logs (Users_id, Title, Description) VALUES (?,?,?)'
-    
+    const sql = 'INSERT INTO logs (Users_id, Title, Description, Status) VALUES (?,?,?,?)'
+    const ongoing = "Ongoing"
     try {
-        await connection.query(sql, [userId, title, description])
-        console.log("ADDED")
+        await connection.query(sql, [userId, title, description, ongoing])
+        //console.log("ADDED")
     } catch (error) {
         console.log("Error with adding log: ", error)
     } finally {
