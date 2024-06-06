@@ -16,8 +16,8 @@ export default async function RootLayout({ children, params }) {
     //console.log(log.Tags)
 
     return (
-        <div> 
-            <div className="p-8">
+        <div className=""> 
+            <div className="p-8 ">
               <div className="bg-white p-4 text-[50px] rounded-xl border border-grey ">
                 {log.Title} 
               </div>
@@ -34,11 +34,11 @@ export default async function RootLayout({ children, params }) {
                   </div>
               </div>
 
-              <div className="flex pt-4">
+              <div className="flex pt-4 ">
                 <div className="w-[180px] h-full p-2 h-full justify-center items-center " >
                   <LogSidebar logId = {logId} />
                 </div>
-              <div className="w-3/4">
+              <div className="w-full">
                 {children}
               </div>
 
