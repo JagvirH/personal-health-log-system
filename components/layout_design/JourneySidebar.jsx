@@ -8,14 +8,24 @@ const JourneySidebar = ({ onJourneySelect }) => {
   ];
 
   return (
-    <div className=''>
+    <div className='border-grey px-2 h-full'>
       {journeys.map((journey) => (
         <div 
           key={journey.id}
           className='cursor-pointer p-2'
           onClick={() => onJourneySelect(journey)}
         >
-          {journey.title}
+            <div className='rounded-xl bg-[white] p-2'> 
+                <div className='text-xl'> 
+                    {journey.title}
+                    <hr />
+                </div>
+                <div> 
+                    {journey.date}
+                </div>
+            </div>
+
+          
         </div>
       ))}
     </div>

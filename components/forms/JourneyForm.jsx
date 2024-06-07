@@ -1,6 +1,9 @@
+"use client"
+
+import { insertJourney } from '@/backend/database/journey';
 import React, { useState, useEffect } from 'react';
 
-const JourneyForm = ({ journey }) => {
+const JourneyForm = ({ journey, logId }) => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
@@ -8,15 +11,23 @@ const JourneyForm = ({ journey }) => {
   useEffect(() => {
     if (journey) {
       setTitle(journey.title || '');
-      setDate(journey.date || '');
+      setDate(journey.date ? journey.date.substring(0, 10) : ''); // Ensure date is in YYYY-MM-DD format
       setDescription(journey.description || '');
     }
   }, [journey]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ title, date, description });
+    if (title && date && description) {
+      try {
+        await insertJourney({ logId, date, title, description });
+        // Optionally, handle success (e.g., show a message, redirect, etc.)
+      } catch (error) {
+        console.error('Error inserting log:', error);
+      }
+    } else {
+      console.log('All fields are required');
+    }
   };
 
   return (

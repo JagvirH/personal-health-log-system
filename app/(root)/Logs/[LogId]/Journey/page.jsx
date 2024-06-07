@@ -4,7 +4,7 @@ import JourneySidebar from '@/components/layout_design/JourneySidebar'
 import JourneyForm from '@/components/forms/JourneyForm';
 import React, { useState } from 'react'
 
-const Page = () => {
+const Page = ({params}) => {
   const [selectedJourney, setSelectedJourney] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
 
@@ -17,6 +17,9 @@ const Page = () => {
     setIsCreating(false);
     setSelectedJourney(journey);
   };
+
+  //console.log("Here ->>>>" + params.LogId)
+  const logId = params.LogId
 
   return (
     <div>
@@ -36,7 +39,7 @@ const Page = () => {
         </div>
         <div className='w-full pl-2 rounded'>
           {isCreating || selectedJourney ? (
-            <JourneyForm journey={selectedJourney} />
+            <JourneyForm journey={selectedJourney} logId={logId} />
           ) : (
             <div></div>
           )}
