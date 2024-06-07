@@ -1,34 +1,49 @@
-import JourneySidebar from '@/components/layout_design/JourneySidebar'
-import React from 'react'
+"use client"
 
-const page = () => {
+import JourneySidebar from '@/components/layout_design/JourneySidebar'
+import JourneyForm from '@/components/forms/JourneyForm';
+import React, { useState } from 'react'
+
+const Page = () => {
+  const [selectedJourney, setSelectedJourney] = useState(null);
+  const [isCreating, setIsCreating] = useState(false);
+
+  const handleCreate = () => {
+    setIsCreating(true);
+    setSelectedJourney({ title: '', date: '', description: '' }); // Empty form for creating new journey
+  };
+
+  const handleJourneySelect = (journey) => {
+    setIsCreating(false);
+    setSelectedJourney(journey);
+  };
+
   return (
     <div>
       <div className='flex flex-row w-full pl-2'>
-        
         <div className='w-[450px]'>
           <div className='flex-col'>
             <div className='text-[30px] p-2'>
               Journey
             </div>
-            <div className='blue_button p-2 h-12'>
+            <div className='blue_button p-2 h-12' onClick={handleCreate}>
               Create
             </div>
             <div className='pt-2'>
-              <JourneySidebar />
+              <JourneySidebar onJourneySelect={handleJourneySelect} />
             </div>
-
           </div>
-          
         </div>
-        <div className='w-full p-2 bg-[green]'>
-           
+        <div className='w-full pl-2 rounded'>
+          {isCreating || selectedJourney ? (
+            <JourneyForm journey={selectedJourney} />
+          ) : (
+            <div></div>
+          )}
         </div>
-
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
