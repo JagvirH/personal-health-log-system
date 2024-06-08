@@ -33,7 +33,7 @@ const Page = ({params}) => {
               Create
             </div>
             <div className='pt-2'>
-              <JourneySidebar onJourneySelect={handleJourneySelect} />
+              <JourneySidebar onJourneySelect={handleJourneySelect} logId={logId} />
             </div>
           </div>
         </div>

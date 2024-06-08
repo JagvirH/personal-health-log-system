@@ -1,31 +1,48 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
+import { getJourneys as fetchJourneys } from '@/backend/database/journey';
 
-const JourneySidebar = ({ onJourneySelect }) => {
-  const journeys = [
-    { id: 1, title: 'Journey 1', date: '2024-01-01', description: 'Description 1' },
-    { id: 2, title: 'Journey 2', date: '2024-02-01', description: 'Description 2' },
-    // Add more journeys here
-  ];
+const JourneySidebar = ({ onJourneySelect, logId }) => {
+  const [journeys, setJourneys] = useState([]);
+
+  useEffect(() => {
+    const getJourneys = async () => {
+      try {
+        const fetchedJourneys = await fetchJourneys({ logId });
+        console.log("HERE --->", fetchedJourneys);
+        // Ensure dates are formatted to strings
+        const formattedJourneys = fetchedJourneys.map(journey => ({
+          ...journey,
+          Date: new Date(journey.Date).toLocaleDateString(), // Convert to a readable date format
+        }));
+        setJourneys(formattedJourneys);
+      } catch (error) {
+        console.error('Error fetching journeys:', error);
+      }
+    };
+
+    if (logId) {
+      getJourneys();
+    }
+  }, [logId]);
 
   return (
     <div className='border-grey px-2 h-full'>
       {journeys.map((journey) => (
         <div 
-          key={journey.id}
+          key={journey.Id}
           className='cursor-pointer p-2'
           onClick={() => onJourneySelect(journey)}
         >
-            <div className='rounded-xl bg-[white] p-2'> 
-                <div className='text-xl'> 
-                    {journey.title}
-                    <hr />
-                </div>
-                <div> 
-                    {journey.date}
-                </div>
+          <div className='rounded-xl bg-[white] p-2'>
+            <div className='text-xl'>
+              {journey.Title}
+              <hr />
             </div>
-
-          
+            <div>
+              {journey.Date}
+            </div>
+          </div>
         </div>
       ))}
     </div>

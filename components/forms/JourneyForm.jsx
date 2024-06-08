@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import { insertJourney } from '@/backend/database/journey';
 import React, { useState, useEffect } from 'react';
 
@@ -10,9 +9,9 @@ const JourneyForm = ({ journey, logId }) => {
 
   useEffect(() => {
     if (journey) {
-      setTitle(journey.title || '');
-      setDate(journey.date ? journey.date.substring(0, 10) : ''); // Ensure date is in YYYY-MM-DD format
-      setDescription(journey.description || '');
+      setTitle(journey.Title || '');
+      setDate(journey.Date ? journey.Date.substring(0, 10) : ''); // Ensure date is in YYYY-MM-DD format
+      setDescription(journey.Description || '');
     }
   }, [journey]);
 
@@ -58,12 +57,22 @@ const JourneyForm = ({ journey, logId }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <button
-        type='submit'
-        className='mt-2 p-2 bg-blue-500 text-white rounded'
-      >
-        Save
-      </button>
+      <div className='flex flex-row'>
+
+      
+        <button
+            type='submit'
+            className='blue_button w-1/2 px-2'
+        >
+            Save
+        </button>
+        <button
+            type='submit'
+            className='blue_button w-1/2 px-2'
+        >
+            Delete
+        </button>
+      </div>
     </form>
   );
 };

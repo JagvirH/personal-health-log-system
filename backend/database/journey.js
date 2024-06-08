@@ -1,32 +1,31 @@
 "use server"
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import { connectToDB } from "@/backend/database/mySql";
 
 export async function insertJourney({ logId, date, title, description }) {
     let connection = await connectToDB();
 
-    const sql = 'INSERT INTO Journeys (logId, Date, Title, Description) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO Journeys (LogId, Date, Title, Description) VALUES (?, ?, ?, ?)';
     try {
-        await connection.query(sql, [logId, date, title, description]);
-        //console.log("ADDED")
+        await connection.execute(sql, [logId, date, title, description]);
     } catch (error) {
-        console.log("Error with adding log: ", error);
+        console.error("Error with adding log:", error);
     } finally {
-        connection.close();
+        connection.end();
     }
 }
 
-export async function getJourneys({logId}){
+export async function getJourneys({ logId }) {
     let connection = await connectToDB();
-    const sql = 'SELECT * FROM Journeys (LogId) VALUES (?)'
+    const sql = 'SELECT * FROM Journeys WHERE LogId = ?';
 
     try {
-        await connection.query(sql, [logId]);
-        //console.log("ADDED")
+        const [results] = await connection.execute(sql, [logId]);
+        return results;
     } catch (error) {
-        console.log("Error with adding log: ", error);
+        console.error("Error fetching journeys:", error);
+        return [];
     } finally {
-        connection.close();
+        connection.end();
     }
-
 }
