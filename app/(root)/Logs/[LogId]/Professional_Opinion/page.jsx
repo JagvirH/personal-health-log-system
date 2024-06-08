@@ -1,11 +1,17 @@
-import React from 'react'
+"use client";
 
-const page = () => {
+import ProfessionalOpinionForm from '@/components/forms/ProfessionalOpinionForm';
+import React from 'react';
+
+const Page = async ({ params }) => {
+  const logId = params.LogId;
+  console.log(logId);
+
   return (
     <div>
-      Professional Help
+      <ProfessionalOpinionForm logId={logId} />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
