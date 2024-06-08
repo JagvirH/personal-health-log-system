@@ -37,7 +37,7 @@ const Page = ({params}) => {
             </div>
           </div>
         </div>
-        <div className='w-full pl-2 rounded'>
+        <div className='w-full pl-4 rounded rounded-xl'>
           {isCreating || selectedJourney ? (
             <JourneyForm journey={selectedJourney} logId={logId} />
           ) : (

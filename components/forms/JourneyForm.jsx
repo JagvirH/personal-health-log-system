@@ -30,7 +30,10 @@ const JourneyForm = ({ journey, logId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='p-4 bg-white rounded-lg'>
+    <div className="rounded-lg bg-white">
+
+    
+    <form onSubmit={handleSubmit} className='p-4 '>
       <div className='mb-4'>
         <label className='block text-sm font-medium text-gray-700'>Title</label>
         <input
@@ -44,7 +47,7 @@ const JourneyForm = ({ journey, logId }) => {
         <label className='block text-sm font-medium text-gray-700'>Date</label>
         <input
           type='date'
-          className='mt-1 p-2 block w-full border rounded-md'
+          className='mt-1 p-2 rounded-md block w-full border '
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -74,6 +77,7 @@ const JourneyForm = ({ journey, logId }) => {
         </button>
       </div>
     </form>
+    </div>
   );
 };
 
