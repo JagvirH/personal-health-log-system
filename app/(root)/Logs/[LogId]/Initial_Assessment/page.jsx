@@ -14,10 +14,15 @@ const Page = async ({ params }) => {
         <div className='w-full flex flex-col'>
             
             <div>
-                <LogEdit Id= {logId} description={log.Description} status={log.Status}/>
-                <div>
-
+                <div className='text-[40px]'>
+                    Initial Assessment
                 </div>
+                
+                <div className='border-grey'>
+                    <LogEdit Id= {logId} description={log.Description} status={log.Status}/>
+                    
+                </div>
+                
             </div>
             
             

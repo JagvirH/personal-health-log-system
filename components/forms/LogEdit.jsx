@@ -36,11 +36,11 @@ const LogEdit = ({ Id, description, status }) => {
   };
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col p-4'>
       <div>
         Description:
       </div>
-      <form onSubmit={handleSubmit} className='border border-grey'>
+      <form onSubmit={handleSubmit} className=''>
         <textarea
           className='bg-white rounded-xl p-2 w-full h-48'
           value={currentDescription}

@@ -47,35 +47,41 @@ const ProfessionalOpinionForm = ({ logId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white rounded-lg">
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Who</label>
-        <select
-          className="mt-1 p-2 block w-full border rounded-md"
-          value={whoId}
-          onChange={(e) => setWhoId(e.target.value)}
+    <div className='border-grey'>
+      <form onSubmit={handleSubmit} className="p-4 rounded-lg">
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Who</label>
+          <div className='bg-[green] rounded-xl'>
+
+          
+            <select
+              className="bg-white rounded-xl p-2 w-full"
+              value={whoId}
+              onChange={(e) => setWhoId(e.target.value)}
+            >
+              <option value="">Select Who</option>
+              {whoOptions.map(option => (
+                <option key={option.Id} value={option.Id}>{option.Title}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            className="bg-white rounded-xl p-2 w-full h-48"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <button
+          type="submit"
+          className="mt-2 p-2 bg-blue-500 text-white rounded"
         >
-          <option value="">Select Who</option>
-          {whoOptions.map(option => (
-            <option key={option.Id} value={option.Id}>{option.Title}</option>
-          ))}
-        </select>
-      </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Description</label>
-        <textarea
-          className="mt-1 p-2 block w-full border rounded-md"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </div>
-      <button
-        type="submit"
-        className="mt-2 p-2 bg-blue-500 text-white rounded"
-      >
-        Save
-      </button>
-    </form>
+          Save
+        </button>
+      </form>
+    </div>
   );
 };
 

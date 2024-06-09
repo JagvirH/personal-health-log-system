@@ -24,6 +24,10 @@
         @apply border border-[#b5bac9] rounded-xl p-1
     }
 
+    .border-blue{
+        @apply border border-[#1479fd] rounded-xl p-1
+    }
+
     .text-grey{
         @apply text-[#b5bac9]
     }

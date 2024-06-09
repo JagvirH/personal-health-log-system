@@ -9,6 +9,9 @@ const Page = async ({ params }) => {
 
   return (
     <div>
+      <div className='text-[40px]'>
+          Professional Opinion
+      </div>
       <ProfessionalOpinionForm logId={logId} />
     </div>
   );
