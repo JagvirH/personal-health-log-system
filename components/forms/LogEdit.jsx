@@ -35,7 +35,8 @@ const LogEdit = ({ Id, description, status }) => {
       Status: currentStatus
     });
 
-    router.push("/Logs");
+    router.push(`/Logs/${Id}/Initial_Assessment`);
+
   };
 
   return (

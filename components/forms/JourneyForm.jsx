@@ -30,6 +30,9 @@ const JourneyForm = ({ journey, logId }) => {
   };
 
   return (
+    <div className=''>
+
+    
     <div className="rounded-lg bg-white">
 
     
@@ -77,6 +80,7 @@ const JourneyForm = ({ journey, logId }) => {
         </button>
       </div>
     </form>
+    </div>
     </div>
   );
 };

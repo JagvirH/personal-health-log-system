@@ -23,26 +23,34 @@ const Page = ({params}) => {
 
   return (
     <div>
-      <div className='flex flex-row w-full pl-2'>
-        <div className='w-[450px]'>
-          <div className='flex-col'>
-            <div className='text-[30px] p-2'>
+      <div className='text-[40px]'>
               Journey
+      </div>
+      <div className='border-grey'>
+        <div className='p-4'>
+
+        
+          <div className='flex flex-row w-full pl-2'>
+            <div className='w-[450px]'>
+              <div className='flex-col'>
+                
+              
+                <div className='blue_button p-2 h-12' onClick={handleCreate}>
+                  Create
+                </div>
+                <div className='pt-2'>
+                  <JourneySidebar onJourneySelect={handleJourneySelect} logId={logId} />
+                </div>
+              </div>
             </div>
-            <div className='blue_button p-2 h-12' onClick={handleCreate}>
-              Create
-            </div>
-            <div className='pt-2'>
-              <JourneySidebar onJourneySelect={handleJourneySelect} logId={logId} />
+            <div className='w-full pl-4 rounded rounded-xl'>
+              {isCreating || selectedJourney ? (
+                <JourneyForm journey={selectedJourney} logId={logId} />
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
-        </div>
-        <div className='w-full pl-4 rounded rounded-xl'>
-          {isCreating || selectedJourney ? (
-            <JourneyForm journey={selectedJourney} logId={logId} />
-          ) : (
-            <div></div>
-          )}
         </div>
       </div>
     </div>
