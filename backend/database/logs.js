@@ -83,11 +83,9 @@ export async function getLogs({ userId }) {
 }
 
 
+export async function updateDescription({}) {
 
-
-
-
-
+}
 
 
 export async function checkIfUsersLog({ userId, logId }) {
@@ -208,17 +206,19 @@ export async function getLogsForTextSimilarity() {
         connection.close();
     }
     
-
 }
 
-export async function editLogDescription(Id, Description) {
+export async function editLogDescription(Id, Description, Status) {
     let connection = await connectToDB();
-    const sql = `UPDATE Logs SET Description = ? WHERE Id = ?`;
+    const sql = `UPDATE Logs SET Description = ?, Status = ? WHERE Id = ?`;
 
-    const check = [Id, Description]
+    // Log the SQL statement and parameters for debugging
+    console.log("SQL Query:", sql);
+    console.log("Parameters:", [Description, Status, Id]);
 
     try {
-        await connection.query(sql,  check);
+        // Ensure proper parameter substitution
+        await connection.query(sql, [Description, Status, Id]);
         console.log("Changed");
     } catch (error) {
         console.log("Error with updating log: ", error);
@@ -226,6 +226,7 @@ export async function editLogDescription(Id, Description) {
         connection.close();
     }
 }
+
 
 export async function getLogsId({ userId, title, description }) {
     let connection;
