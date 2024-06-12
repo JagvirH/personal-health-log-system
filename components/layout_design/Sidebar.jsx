@@ -20,7 +20,7 @@ export default async function Sidebar() {
                     </div>
                     <div className='pt-8'>
                         <ul className="list-none">
-                            {/* Map over the items array to generate list items */}
+                            
                             {items.map((item, index) => (
                                 <Link href={`/${item}`} >
                                     <li key={index} className="sidebar_button p-4 ">
