@@ -23,11 +23,11 @@ const LogEdit = ({ Id, description, status }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("----------------")
-    console.log("Current Id", Id)
-    console.log('New Description:', currentDescription);
-    console.log('New Status:', currentStatus);
-    console.log("----------------")
+    //console.log("----------------")
+    //console.log("Current Id", Id)
+    //console.log('New Description:', currentDescription);
+    //console.log('New Status:', currentStatus);
+    //console.log("----------------")
 
     await editLogDescription({
       Id: Id,

@@ -33,7 +33,7 @@ const JourneyForm = ({ journey, logId }) => {
     <div className=''>
 
     
-    <div className="rounded-lg bg-white">
+    <div className="rounded-lg">
 
     
     <form onSubmit={handleSubmit} className='p-4 '>
@@ -41,7 +41,7 @@ const JourneyForm = ({ journey, logId }) => {
         <label className='block text-sm font-medium text-gray-700'>Title</label>
         <input
           type='text'
-          className='mt-1 p-2 block w-full border rounded-md'
+          className='mt-1 p-2 block w-full border rounded-xl'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -50,7 +50,7 @@ const JourneyForm = ({ journey, logId }) => {
         <label className='block text-sm font-medium text-gray-700'>Date</label>
         <input
           type='date'
-          className='mt-1 p-2 rounded-md block w-full border '
+          className='mt-1 p-2 rounded-md block w-full border rounded-xl'
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -58,7 +58,7 @@ const JourneyForm = ({ journey, logId }) => {
       <div className='mb-4'>
         <label className='block text-sm font-medium text-gray-700'>Description</label>
         <textarea
-          className='mt-1 p-2 block w-full border rounded-md'
+          className='mt-1 p-2 block w-full border rounded-xl h-48'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -68,13 +68,13 @@ const JourneyForm = ({ journey, logId }) => {
       
         <button
             type='submit'
-            className='blue_button w-1/2 px-2'
+            className='blue_button w-1/2'
         >
             Save
         </button>
         <button
             type='submit'
-            className='blue_button w-1/2 px-2'
+            className='blue_button w-1/2'
         >
             Delete
         </button>
