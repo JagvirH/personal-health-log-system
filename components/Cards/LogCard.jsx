@@ -38,7 +38,7 @@ export default function Sidebar({ title, tags, description, id }) {
         <div className='mt-2'>
           Description:
           <br />
-          <div className='border border-[#1479fd] rounded main_background'>
+          <div className='border border-[#1479fd] rounded main_background p-1'>
             {description && description.length > 86 ? description.slice(0, 140) + '...' : description}
           </div>
         </div>

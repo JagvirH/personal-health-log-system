@@ -7,6 +7,7 @@ const LogEdit = ({ Id, description, status }) => {
   const router = useRouter();
   const [currentDescription, setCurrentDescription] = useState(description);
   const [currentStatus, setCurrentStatus] = useState(status);
+  const [currentShare, setCurrentShare] = useState(status);
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
@@ -50,16 +51,31 @@ const LogEdit = ({ Id, description, status }) => {
           value={currentDescription}
           onChange={handleDescriptionChange}
         />
-        <div className='mt-4'>
-          Status:
-          <select
-            className='bg-white rounded-xl p-2 w-full'
-            value={currentStatus}
-            onChange={handleStatusChange}
-          >
-            <option value='Ongoing'>Ongoing</option>
-            <option value='Solved'>Solved</option>
-          </select>
+        <div className='flex flex-row'>
+          <div className='mt-2 w-1/2 pr-2' >
+            Status:
+            <select
+              className='bg-white rounded-xl p-2 w-full'
+              value={currentShare}
+              //sonChange={handleStatusChange}
+            >
+              <option value='Ongoing'>Ongoing</option>
+              <option value='Solved'>Solved</option>
+            </select>
+          </div>
+          <div>
+            <div className='mt-2 w-full'>
+              Happy to Share:
+              <select
+                className='bg-white rounded-xl p-2 w-full'
+                value={currentStatus}
+                //onChange={handleStatusChange}
+              >
+                <option value='Ongoing'>Yes im happy to share</option>
+                <option value='Solved'>Nope boy</option>
+              </select>
+            </div>
+          </div>
         </div>
         <button
           type='submit'
