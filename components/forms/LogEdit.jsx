@@ -56,7 +56,7 @@ const LogEdit = ({ Id, description, status }) => {
             Status:
             <select
               className='bg-white rounded-xl p-2 w-full'
-              value={currentShare}
+              value={currentStatus}
               //sonChange={handleStatusChange}
             >
               <option value='Ongoing'>Ongoing</option>
@@ -68,7 +68,8 @@ const LogEdit = ({ Id, description, status }) => {
               Happy to Share:
               <select
                 className='bg-white rounded-xl p-2 w-full'
-                value={currentStatus}
+                
+                value={currentShare}
                 //onChange={handleStatusChange}
               >
                 <option value='Ongoing'>Yes im happy to share</option>
