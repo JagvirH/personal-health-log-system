@@ -3,7 +3,7 @@ import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 
-const LogEdit = ({ Id, description, status }) => {
+const LogEdit = ({ Id, description, status, tags }) => {
   const router = useRouter();
   const [currentDescription, setCurrentDescription] = useState(description);
   const [currentStatus, setCurrentStatus] = useState(status);
@@ -11,8 +11,8 @@ const LogEdit = ({ Id, description, status }) => {
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
-    setIsChanged(currentDescription !== description || currentStatus !== status);
-  }, [currentDescription, currentStatus, description, status]);
+    setIsChanged(currentDescription !== description || currentStatus !== status );
+  }, [currentDescription, currentStatus, currentShare, description, status]);
 
   const handleDescriptionChange = (e) => {
     setCurrentDescription(e.target.value);
@@ -21,6 +21,8 @@ const LogEdit = ({ Id, description, status }) => {
   const handleStatusChange = (e) => {
     setCurrentStatus(e.target.value);
   };
+
+  console.log("HERE: " + tags[0].Title)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -78,6 +80,23 @@ const LogEdit = ({ Id, description, status }) => {
             </div>
           </div>
         </div>
+        <div className='py-4'>
+          <div>
+            <div className='flex justify-center items-center p-1 md-text border-grey '>
+            {tags.map(tag => (
+                              <span key={tag.Id} className="tag-item px-1 flex flex-row card_tag">
+                                  <button className='bg-[grey]'>
+                                    X 
+                                  </button>
+                                  <div >
+                                  {tag.Title}
+                                  </div>  
+                              </span>
+                          ))}
+
+            </div>
+          </div>
+        </div>
         <button
           type='submit'
           className={`mt-2 p-2 rounded ${isChanged ? 'bg-blue-500 text-white cursor-pointer' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
@@ -85,6 +104,9 @@ const LogEdit = ({ Id, description, status }) => {
         >
           Save
         </button>
+
+        
+
       </form>
     </div>
   );

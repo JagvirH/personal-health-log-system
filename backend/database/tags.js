@@ -52,6 +52,8 @@ export async function addTags({ userId, title, description, tags }) {
     }
 }
 
+/*
+
 export async function getTagLabel({Id}){
     let connection = await connectToDB();
 
@@ -79,4 +81,6 @@ export async function getLogTags({Id}){
     
 
 }
+
+*/
 

@@ -2,8 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { getOpinion, insertOrUpdateOpinion, getWhoOptions } from '@/backend/database/opinion';
+import { useRouter } from "next/navigation";
+
+
+  
 
 const ProfessionalOpinionForm = ({ logId }) => {
+  const router = useRouter();
   const [whoOptions, setWhoOptions] = useState([]);
   const [whoId, setWhoId] = useState('');
   const [description, setDescription] = useState('');
@@ -40,6 +45,7 @@ const ProfessionalOpinionForm = ({ logId }) => {
     e.preventDefault();
     try {
       await insertOrUpdateOpinion({ logId, whoId, description });
+      router.push(`/Logs/${logId}/Initial_Assessment`);
       // Optionally, handle success (e.g., show a message, redirect, etc.)
     } catch (error) {
       console.error('Error saving opinion:', error);
