@@ -1,5 +1,5 @@
 import { getlog } from '@/backend/database/logs';
-import { getTagLabel } from '@/backend/database/tags';
+import { getTag, getTagLabel } from '@/backend/database/tags';
 import LogEdit from '@/components/forms/LogEdit';
 import React from 'react';
 
@@ -7,6 +7,8 @@ const Page = async ({ params }) => {
 
     const logId = params.LogId;
     const log = await getlog(logId);
+    const listOfTags = await getTag()
+    //const tagLabel = await getTagLabel()
     //const Id = logId
     //console.log(Id)
     //const tag = await getTagLabel(Id)
@@ -15,6 +17,8 @@ const Page = async ({ params }) => {
     //console.log("here: " +log.Tags[0].Title)
 
     //console.log(log.Status)
+
+    console.log(listOfTags)
     
     
     
@@ -27,7 +31,7 @@ const Page = async ({ params }) => {
                 </div>
                 
                 <div className='border-grey'>
-                    <LogEdit Id= {logId} description={log.Description} status={log.Status} tags={log.Tags} />
+                    <LogEdit Id= {logId} description={log.Description} status={log.Status} tags={log.Tags} listOfTags={listOfTags} />
                     
                 </div>
                 
