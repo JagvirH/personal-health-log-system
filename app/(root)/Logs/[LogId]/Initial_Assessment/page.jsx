@@ -8,17 +8,7 @@ const Page = async ({ params }) => {
     const logId = params.LogId;
     const log = await getlog(logId);
     const listOfTags = await getTag()
-    //const tagLabel = await getTagLabel()
-    //const Id = logId
-    //console.log(Id)
-    //const tag = await getTagLabel(Id)
     
-
-    //console.log("here: " +log.Tags[0].Title)
-
-    //console.log(log.Status)
-
-    console.log(listOfTags)
     
     
     

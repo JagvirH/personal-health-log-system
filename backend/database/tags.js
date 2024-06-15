@@ -73,14 +73,14 @@ export async function getTagLabel({Id}){
 
 }
 
-export async function getLogTags({Id}){
+export async function deleteTags({Id}){
 
     let connection = await connectToDB();
 
-    
-    
-
 }
+
+
+
 
 
 

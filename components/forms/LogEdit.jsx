@@ -68,6 +68,9 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
       //deletedTags: deletedTags.map(tag => tag.Id)
     });
 
+    console.log(newTags)
+    console.log(deletedTags)
+
     router.push(`/Logs/${Id}/Initial_Assessment`);
   };
 
@@ -108,7 +111,7 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
         </div>
         <div className='py-4'>
           <div className=''>
-            <div className='flex justify-center items-center p-1 md-text border-grey '>
+            <div className='flex justify-center items-center p-1 md-text border-blue bg-[white]'>
               {selectedTags.map(tag => (
                 <span key={tag.Id} className="tag-item px-1 flex flex-row ">
                   <button
@@ -127,7 +130,7 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
           </div>
         </div>
         <div className='w-1/3'>
-          <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2'>
+          <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2 bg-[white]'>
             {listOfTags.map(tag => (
               <div key={tag.Id} className='mr-4 mb-2'>
                 <label className='inline-flex items-center'>
