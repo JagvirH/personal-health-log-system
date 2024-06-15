@@ -65,7 +65,7 @@
     }
 
     .card_tag_remove-X{
-        @apply border border-[#1479fd] rounded-l-md text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
+        @apply border border-[#1479fd] rounded-l text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed] hover:bg-[green]
     }
 
     .log_card{
