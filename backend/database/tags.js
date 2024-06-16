@@ -56,7 +56,6 @@ export async function addTags({ userId, title, description, tags }) {
 
 export async function getTagLabel({Id}){
     let connection = await connectToDB();
-
     const sql = "SELECT * FROM Tags WHERE Id = ?"
 
     try {
@@ -70,14 +69,54 @@ export async function getTagLabel({Id}){
         // Close the database connection
         connection.close();
     }
-
 }
 
-export async function deleteTags({Id}){
+export async function deleteTags({Id, tagId}){
 
     let connection = await connectToDB();
 
+    console.log(tagId)
+
+    const sql ="DELETE FROM log_Tags WHERE logId = ? AND tagId = ?"
+    const check = [Id, tagId]
+    try {
+        // Execute the SQL statement with the provided values
+        await connection.query(sql, check);
+        //console.log('Got Tags');
+        //return tagList
+    } catch (error) {
+        console.error('Error getting tags', error);
+    } finally {
+        // Close the database connection
+        connection.close();
+    }
+
 }
+
+export async function addlogTags({Id, tagId}) {
+
+    let connection = await connectToDB();
+
+    console.log(tagId)
+
+    const sql ="INSERT INTO log_Tags (logId, tagId) VALUES (?, ?)"
+    const check = [Id, tagId]
+    try {
+        // Execute the SQL statement with the provided values
+        await connection.query(sql, check);
+        //console.log('Got Tags');
+        //return tagList
+    } catch (error) {
+        console.error('Error getting tags', error);
+    } finally {
+        // Close the database connection
+        connection.close();
+    }
+
+}
+
+
+
 
 
 

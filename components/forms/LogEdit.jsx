@@ -2,6 +2,7 @@
 import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
+import { addlogTags, deleteTags } from '@/backend/database/tags';
 
 const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
   const router = useRouter();
@@ -68,8 +69,22 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
       //deletedTags: deletedTags.map(tag => tag.Id)
     });
 
-    console.log(newTags)
-    console.log(deletedTags)
+    if (newTags.length > 0) {
+      for (const tag of newTags) {
+        const tagId = tag.Id;
+        //console.log(tagId)
+        await addlogTags({ Id, tagId });
+      }
+    }
+    
+    //await deleteTags({Id, tagId})
+    if (deletedTags.length > 0) {
+      for (const tag of deletedTags) {
+        const tagId = tag.Id;
+        //console.log(tagId)
+        await deleteTags({ Id, tagId });
+      }
+    }
 
     router.push(`/Logs/${Id}/Initial_Assessment`);
   };
@@ -160,3 +175,11 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
 };
 
 export default LogEdit;
+
+// aloo tikki chaat
+// chilli paneer
+// 4 bhatura
+// paneer butter masala
+// plaugh rice
+// Tarka Daal
+// Makhi de roti 
