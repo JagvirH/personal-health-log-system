@@ -213,8 +213,8 @@ export async function editLogDescription({Id, Description, Status}) {
     const sql = `UPDATE Logs SET Description = ?, Status = ? WHERE Id = ?`;
 
     // Log the SQL statement and parameters for debugging
-    console.log("SQL Query:", sql);
-    console.log("Parameters:", [Description, Status, Id]);
+    //console.log("SQL Query:", sql);
+    //console.log("Parameters:", [Description, Status, Id]);
 
     try {
         // Ensure proper parameter substitution
@@ -248,6 +248,24 @@ export async function getLogsId({ userId, title, description }) {
     }
 }
 
+export async function deleteLog({logId}) {
+    let connection = await connectToDB();
+    const sql = `DELETE FROM Logs WHERE Id = ?;`;
+
+    // Log the SQL statement and parameters for debugging
+    //console.log("SQL Query:", sql);
+    //console.log("Parameters:", [Description, Status, Id]);
+
+    try {
+        // Ensure proper parameter substitution
+        await connection.query(sql, [Id]);
+        console.log("Changed");
+    } catch (error) {
+        console.log("Error with updating log: ", error);
+    } finally {
+        connection.close();
+    }
+}
 
 /*
 

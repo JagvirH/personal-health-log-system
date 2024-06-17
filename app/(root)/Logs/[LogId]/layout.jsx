@@ -1,3 +1,5 @@
+
+
 import { Inter } from "next/font/google";
 import "../../../globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
@@ -6,9 +8,6 @@ import { getlog } from "@/backend/database/logs";
 import Image from 'next/image';
 import LogSidebar from "@/components/layout_design/LogSidebar";
 //import Image from 'next/image';
-
-
-
 
 export default async function RootLayout({ children, params }) {
 
