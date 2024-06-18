@@ -251,6 +251,7 @@ export async function getLogsId({ userId, title, description }) {
 export async function deleteLog({logId}) {
     let connection = await connectToDB();
     const sql = `DELETE FROM Logs WHERE Id = ?;`;
+    //console.log(logId)
 
     // Log the SQL statement and parameters for debugging
     //console.log("SQL Query:", sql);
@@ -258,7 +259,7 @@ export async function deleteLog({logId}) {
 
     try {
         // Ensure proper parameter substitution
-        await connection.query(sql, [Id]);
+        await connection.query(sql, [logId]);
         console.log("Changed");
     } catch (error) {
         console.log("Error with updating log: ", error);
@@ -266,6 +267,11 @@ export async function deleteLog({logId}) {
         connection.close();
     }
 }
+
+
+
+
+
 
 /*
 
