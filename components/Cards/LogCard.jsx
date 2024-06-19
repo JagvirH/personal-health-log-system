@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Sidebar({ title, tags, description, id }) {
+export default function Sidebar({ title, tags, description, id, bookmark }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  console.log("HERE --->" + bookmark)
 
   return (
     <div className='flex w-96 border hover:border-[#1479fd] rounded-xl shadow-2xl'>

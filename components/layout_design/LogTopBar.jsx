@@ -54,13 +54,20 @@ const LogTopBar = ({ logId, log }) => {
       </div>
 
       <Modal show={showModal} handleClose={() => setShowModal(false)}>
-        <div className='rounded-xl '>
-
-        
-        <h2>Confirm Deletion</h2>
+        <div className='p-4 text-center'>
+        <h2 className='text-[20px]'>Confirm Deletion</h2>
         <p>Are you sure you want to delete this log?</p>
-        <button className='blue_button' onClick={handleDeleteClick}>Yes, delete</button>
-        <button className='blue_button' onClick={() => setShowModal(false)}>Cancel</button>
+        <div className='flex flex-row justify-center items-center pt-4 w-full'>
+            <div>
+                <button className='blue_button px-2' onClick={handleDeleteClick}>Delete</button>
+            </div>
+            <div>
+                <button className='blue_button px-2' onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
+
+        </div>
+        
+        
         </div>
       </Modal>
     </div>

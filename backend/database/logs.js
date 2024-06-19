@@ -6,10 +6,11 @@ import { connectToDB } from "@/backend/database/mySql";
 export async function addLog({userId, title, description}) {
     let connection = await connectToDB();
 
-    const sql = 'INSERT INTO logs (Users_id, Title, Description, Status) VALUES (?,?,?,?)'
+    const sql = 'INSERT INTO logs (Users_id, Title, Description, Status, Bookmark, Share) VALUES (?,?,?,?,?,?)'
     const ongoing = "Ongoing"
+
     try {
-        await connection.query(sql, [userId, title, description, ongoing])
+        await connection.query(sql, [userId, title, description, ongoing, false, false])
         //console.log("ADDED")
     } catch (error) {
         console.log("Error with adding log: ", error)
@@ -47,6 +48,7 @@ export async function getLogs({ userId }) {
             Logs.Id AS logId, 
             Logs.Title AS logTitle, 
             Logs.Description AS logDescription, 
+            Logs.Bookmark as logBookmark,
             Tags.Id AS tagId, 
             Tags.Title AS tagTitle 
         FROM Logs 
@@ -64,7 +66,8 @@ export async function getLogs({ userId }) {
                     id: row.logId,
                     title: row.logTitle,
                     description: row.logDescription,
-                    tags: []
+                    tags: [],
+                    bookmark: row.logBookmark,
                 };
             }
             if (row.tagId) {

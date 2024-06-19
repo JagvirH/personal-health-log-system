@@ -8,8 +8,11 @@ const Modal = ({ show, handleClose, children }) => {
   }
 
   return (
+    <div>
     <div className="modal-overlay" onClick={handleClose}>
+      
       <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className='rounded-lg border-blue'>
         <div className="modal-header">
           
           <button className="close-button" onClick={handleClose}>
@@ -23,6 +26,8 @@ const Modal = ({ show, handleClose, children }) => {
           
         </div>
       </div>
+      </div>
+    </div>
     </div>
   );
 };
