@@ -150,6 +150,7 @@ export async function getlog(logId) {
                 Logs.Title AS logTitle, 
                 Logs.Description AS logDescription, 
                 Logs.Status AS logStatus,
+                Logs.Bookmark AS logBookmark,
                 Tags.Id AS tagId, 
                 Tags.Title AS tagTitle
             FROM Logs 
@@ -175,6 +176,7 @@ export async function getlog(logId) {
             
             Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null), // Filter out null tags
             Status: results[0].logStatus,
+            Bookmakr: results[0].logBookmark,
         };
 
         return logDetails;
@@ -272,7 +274,19 @@ export async function deleteLog({logId}) {
 }
 
 
+export async function toggleBookmark({ logId, bookmark }) {
+    let connection = await connectToDB();
+    const sql = `UPDATE Logs SET Bookmark = ? WHERE Id = ?`;
 
+    try {
+        await connection.query(sql, [bookmark, logId]);
+        console.log("Bookmark updated");
+    } catch (error) {
+        console.log("Error with updating bookmark: ", error);
+    } finally {
+        connection.close();
+    }
+}
 
 
 

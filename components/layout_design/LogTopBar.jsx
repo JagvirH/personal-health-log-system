@@ -1,12 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
-import { deleteLog } from "@/backend/database/logs";
+import { deleteLog, toggleBookmark } from "@/backend/database/logs";
 import Image from 'next/image';
 import Modal from '../Popup/Modal';
 
 const LogTopBar = ({ logId, log }) => {
   const [showModal, setShowModal] = useState(false);
+  const [bookmark, setBookmark] = useState(log.Bookmark);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleBookmarkClick = async () => {
+    const newBookmark = !bookmark;
+    setBookmark(newBookmark);
+
+    try {
+      await toggleBookmark({ logId, bookmark: newBookmark });
+      console.log('Bookmark status updated');
+    } catch (error) {
+      console.error('Failed to update bookmark:', error);
+    }
+  };
 
   const handleDeleteClick = async () => {
     try {
@@ -41,9 +55,13 @@ const LogTopBar = ({ logId, log }) => {
               Delete
             </div>
           </div>
-          <div className="">
+          <div 
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={handleBookmarkClick}
+          >
             <Image
-              src={"/bookmark-solid.svg"}
+              src={bookmark ? "/bookmark-solid.svg" : "/bookmark-regular.svg"}
               alt="BookMark"
               width={40}
               height={40}
@@ -55,19 +73,16 @@ const LogTopBar = ({ logId, log }) => {
 
       <Modal show={showModal} handleClose={() => setShowModal(false)}>
         <div className='p-4 text-center'>
-        <h2 className='text-[20px]'>Confirm Deletion</h2>
-        <p>Are you sure you want to delete this log?</p>
-        <div className='flex flex-row justify-center items-center pt-4 w-full'>
+          <h2 className='text-[20px]'>Confirm Deletion</h2>
+          <p>Are you sure you want to delete this log?</p>
+          <div className='flex flex-row justify-center items-center pt-4 w-full'>
             <div>
-                <button className='blue_button px-2' onClick={handleDeleteClick}>Delete</button>
+              <button className='blue_button px-2' onClick={handleDeleteClick}>Delete</button>
             </div>
             <div>
-                <button className='blue_button px-2' onClick={() => setShowModal(false)}>Cancel</button>
+              <button className='blue_button px-2' onClick={() => setShowModal(false)}>Cancel</button>
             </div>
-
-        </div>
-        
-        
+          </div>
         </div>
       </Modal>
     </div>
