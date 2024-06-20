@@ -176,7 +176,7 @@ export async function getlog(logId) {
             
             Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null), // Filter out null tags
             Status: results[0].logStatus,
-            Bookmakr: results[0].logBookmark,
+            Bookmark: results[0].logBookmark,
         };
 
         return logDetails;
