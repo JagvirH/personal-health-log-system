@@ -7,7 +7,7 @@ import Link from 'next/link';
 const LogSidebar = ({logId}) => {
   const [hoveredItem, setHoveredItem] = useState(null);
 
-  console.log("Here is the log id: " +logId)
+  //console.log("Here is the log id: " +logId)
 
   const menuItems = [
     { title: 'Initial_Assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },

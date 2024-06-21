@@ -15,6 +15,7 @@ export default async function RootLayout({ children, params }) {
     const logId = params.LogId;
     const log = await getlog(logId);
     //console.log(log.Tags)
+    
 
     return (
       
