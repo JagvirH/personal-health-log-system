@@ -10,10 +10,10 @@ const LogSidebar = ({logId}) => {
   //console.log("Here is the log id: " +logId)
 
   const menuItems = [
-    { title: 'Initial_Assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },
-    { title: 'Professional_Opinion', imageSrc: '/user-md-chat.png', hoverImageSrc: '/user-md-chat-full.png' },
-    { title: 'Journey', imageSrc: '/journey.png', hoverImageSrc: '/journey-full.png' },
-    { title: 'Your_solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
+    { title: 'Initial_Assessment',name: 'Initial Assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },
+    { title: 'Professional_Opinion',name: 'Professional Opinion', imageSrc: '/user-md-chat.png', hoverImageSrc: '/user-md-chat-full.png' },
+    { title: 'Journey',name: 'Journey', imageSrc: '/journey.png', hoverImageSrc: '/journey-full.png' },
+    { title: 'Your_solution',name: 'Your solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
   ];
 
   return (
@@ -43,7 +43,7 @@ const LogSidebar = ({logId}) => {
             </Link>
           </div>
           <div className={`hover-text ${hoveredItem === index ? 'font-bold' : ''} mt-2`}>
-            {item.title}
+            {item.name}
           </div>
         </div>
       ))}

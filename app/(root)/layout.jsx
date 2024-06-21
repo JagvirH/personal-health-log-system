@@ -17,7 +17,6 @@ export default function RootLayout({ children }) {
             <div className="">
               {children}
             </div>
-            
           </div>
         </body>
       </ClerkProvider>

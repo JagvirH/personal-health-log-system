@@ -37,7 +37,7 @@
     }
 
     .main_background {
-        @apply bg-[#e8eced] h-full; /* Adjust the color name or value as needed #e1e8ed*/ 
+        @apply bg-[#e8eced] h-full; /* h-full Adjust the color name or value as needed #e1e8ed*/ 
     }
 
     .blue_text_title{
