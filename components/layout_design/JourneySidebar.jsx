@@ -27,7 +27,7 @@ const JourneySidebar = ({ onJourneySelect, logId }) => {
   }, [logId]);
 
   return (
-    <div className='border-grey px-2 h-full'>
+    <div className='border-grey px-2 h-full max-h-96 overflow-y-auto'>
       {journeys.map((journey) => (
         <div 
           key={journey.Id}

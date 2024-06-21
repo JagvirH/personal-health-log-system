@@ -61,11 +61,11 @@
     }
 
     .card_tag_remove{
-        @apply border border-[#1479fd] rounded-r-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
+        @apply border-t border-l border-b border-[#1479fd] rounded-l-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
     }
 
     .card_tag_remove-X{
-        @apply border border-[#1479fd] rounded-l text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed] hover:bg-[green]
+        @apply border-t border-r border-b border-[#1479fd] rounded-r-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed] hover:bg-[grey]
     }
 
     .log_card{
@@ -86,9 +86,7 @@
 
   .hover-container:hover .hover-text {
     @apply font-bold bg-[1479fd];
-  }
-
-
+  }  
     
 }
 
@@ -126,4 +124,6 @@
     cursor: pointer;
   }
   
+/* Add these to your globals.css */
+
 

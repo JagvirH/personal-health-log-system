@@ -129,6 +129,10 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
             <div className='flex justify-center items-center p-1 md-text border-blue bg-[white]'>
               {selectedTags.map(tag => (
                 <span key={tag.Id} className="tag-item px-1 flex flex-row ">
+                  
+                  <div className='card_tag_remove'>
+                    {tag.Title}
+                  </div>
                   <button
                     type="button"
                     className='card_tag_remove-X'
@@ -136,9 +140,6 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
                   >
                     X
                   </button>
-                  <div className='card_tag_remove'>
-                    {tag.Title}
-                  </div>
                 </span>
               ))}
             </div>
@@ -175,11 +176,3 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
 };
 
 export default LogEdit;
-
-// aloo tikki chaat
-// chilli paneer
-// 4 bhatura
-// paneer butter masala
-// plaugh rice
-// Tarka Daal
-// Makhi de roti 
