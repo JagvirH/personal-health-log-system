@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { getOpinion, insertOrUpdateOpinion, getWhoOptions } from '@/backend/database/opinion';
 import { useRouter } from "next/navigation";
-
-
-  
 
 const ProfessionalOpinionForm = ({ logId }) => {
   const router = useRouter();
   const [whoOptions, setWhoOptions] = useState([]);
   const [whoId, setWhoId] = useState('');
   const [description, setDescription] = useState('');
+  const [initialState, setInitialState] = useState({ whoId: '', description: '' });
+  const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
     const fetchWhoOptions = async () => {
@@ -29,6 +28,7 @@ const ProfessionalOpinionForm = ({ logId }) => {
         if (opinion) {
           setWhoId(opinion.WhoId || '');
           setDescription(opinion.Description || '');
+          setInitialState({ whoId: opinion.WhoId || '', description: opinion.Description || '' });
         }
       } catch (error) {
         console.error('Error fetching opinion:', error);
@@ -40,6 +40,12 @@ const ProfessionalOpinionForm = ({ logId }) => {
       fetchOpinion();
     }
   }, [logId]);
+
+  useEffect(() => {
+    setIsChanged(
+      whoId !== initialState.whoId || description !== initialState.description
+    );
+  }, [whoId, description, initialState]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,8 +64,6 @@ const ProfessionalOpinionForm = ({ logId }) => {
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Who</label>
           <div className='bg-[green] rounded-xl'>
-
-          
             <select
               className="bg-white rounded-xl p-2 w-full"
               value={whoId}
@@ -82,7 +86,8 @@ const ProfessionalOpinionForm = ({ logId }) => {
         </div>
         <button
           type="submit"
-          className="mt-2 p-2 bg-blue-500 text-white rounded"
+          className={`mt-2 p-2 rounded ${isChanged ? 'bg-blue-500 text-white cursor-pointer' : 'bg-gray-300 text-gray-700 cursor-not-allowed'}`}
+          disabled={!isChanged}
         >
           Save
         </button>
