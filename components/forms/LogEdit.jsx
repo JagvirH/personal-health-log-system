@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { addlogTags, deleteTags } from '@/backend/database/tags';
 
-const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
+const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
   const router = useRouter();
   const [currentDescription, setCurrentDescription] = useState(description);
   const [currentStatus, setCurrentStatus] = useState(status);
-  const [currentShare, setCurrentShare] = useState(status);
+  const [currentShare, setCurrentShare] = useState(share);
   const [isChanged, setIsChanged] = useState(false);
 
   const [selectedTags, setSelectedTags] = useState(tags);
@@ -19,10 +19,11 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
     setIsChanged(
       currentDescription !== description || 
       currentStatus !== status ||
+      currentShare !== share ||
       newTags.length > 0 ||
       deletedTags.length > 0
     );
-  }, [currentDescription, currentStatus, currentShare, description, status, newTags, deletedTags]);
+  }, [currentDescription, currentStatus, currentShare, description, status, share, newTags, deletedTags]);
 
   const handleDescriptionChange = (e) => {
     setCurrentDescription(e.target.value);
@@ -33,7 +34,7 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
   };
 
   const handleShareChange = (e) => {
-    setCurrentShare(e.target.value);
+    setCurrentShare(e.target.value === '1');
   };
 
   const handleTagChange = (e) => {
@@ -65,23 +66,19 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
       Id: Id,
       Description: currentDescription,
       Status: currentStatus,
-      //newTags: newTags.map(tag => tag.Id),
-      //deletedTags: deletedTags.map(tag => tag.Id)
+      Share: currentShare,
     });
 
     if (newTags.length > 0) {
       for (const tag of newTags) {
         const tagId = tag.Id;
-        //console.log(tagId)
         await addlogTags({ Id, tagId });
       }
     }
-    
-    //await deleteTags({Id, tagId})
+
     if (deletedTags.length > 0) {
       for (const tag of deletedTags) {
         const tagId = tag.Id;
-        //console.log(tagId)
         await deleteTags({ Id, tagId });
       }
     }
@@ -115,11 +112,11 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
               Happy to Share:
               <select
                 className='bg-white rounded-xl p-2 w-full'
-                value={currentShare}
+                value={currentShare ? '1' : '0'}
                 onChange={handleShareChange}
               >
-                <option value='Yes'>Yes, I'm happy to share</option>
-                <option value='No'>No</option>
+                <option value='1'>Yes, I'm happy to share</option>
+                <option value='0'>No</option>
               </select>
             </div>
           </div>
@@ -129,7 +126,6 @@ const LogEdit = ({ Id, description, status, tags, listOfTags }) => {
             <div className='flex justify-center items-center p-1 md-text border-blue bg-[white]'>
               {selectedTags.map(tag => (
                 <span key={tag.Id} className="tag-item px-1 flex flex-row ">
-                  
                   <div className='card_tag_remove'>
                     {tag.Title}
                   </div>

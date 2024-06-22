@@ -21,7 +21,7 @@ const Page = async ({ params }) => {
                 </div>
                 
                 <div className='border-grey'>
-                    <LogEdit Id= {logId} description={log.Description} status={log.Status} tags={log.Tags} listOfTags={listOfTags} />
+                    <LogEdit Id= {logId} description={log.Description} status={log.Status} tags={log.Tags} listOfTags={listOfTags} share={log.Share} />
                     
                 </div>
                 

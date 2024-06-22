@@ -151,6 +151,7 @@ export async function getlog(logId) {
                 Logs.Description AS logDescription, 
                 Logs.Status AS logStatus,
                 Logs.Bookmark AS logBookmark,
+                Logs.Share AS logShare,
                 Tags.Id AS tagId, 
                 Tags.Title AS tagTitle
             FROM Logs 
@@ -177,6 +178,7 @@ export async function getlog(logId) {
             Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null), // Filter out null tags
             Status: results[0].logStatus,
             Bookmark: results[0].logBookmark,
+            Share: results[0].logShare,
         };
 
         return logDetails;
@@ -213,9 +215,9 @@ export async function getLogsForTextSimilarity() {
     
 }
 
-export async function editLogDescription({Id, Description, Status}) {
+export async function editLogDescription({Id, Description, Status, Share}) {
     let connection = await connectToDB();
-    const sql = `UPDATE Logs SET Description = ?, Status = ? WHERE Id = ?`;
+    const sql = `UPDATE Logs SET Description = ?, Status = ?, Share = ? WHERE Id = ?`;
 
     // Log the SQL statement and parameters for debugging
     //console.log("SQL Query:", sql);
@@ -223,7 +225,7 @@ export async function editLogDescription({Id, Description, Status}) {
 
     try {
         // Ensure proper parameter substitution
-        await connection.query(sql, [Description, Status, Id]);
+        await connection.query(sql, [Description, Status,Share, Id]);
         console.log("Changed");
     } catch (error) {
         console.log("Error with updating log: ", error);
