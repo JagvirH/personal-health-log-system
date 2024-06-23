@@ -46,15 +46,28 @@ const JourneyForm = ({ journey, logId }) => {
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <div className='mb-4'>
-        <label className='block text-sm font-medium text-gray-700'>Date</label>
-        <input
-          type='date'
-          className='mt-1 p-2 rounded-md block w-full border rounded-xl'
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
+      <div className='flex flex-row mb-4'>
+        <div className='w-1/2 pr-2'>
+          <label className='block text-sm font-medium text-gray-700'>Date</label>
+          <input
+            type='date'
+            className='mt-1 p-2 rounded-md block w-full border rounded-xl'
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+        <div className='w-1/2 pl-2'>
+          <label className='block text-sm font-medium text-gray-700'>Date</label>
+            <input
+              type=''
+              className='mt-1 p-2 rounded-md block w-full border rounded-xl'
+              value="Hi"
+              onChange={(e) => setDate(e.target.value)}
+            />
+        </div>
+
       </div>
+      
       <div className='mb-4'>
         <label className='block text-sm font-medium text-gray-700'>Description</label>
         <textarea
