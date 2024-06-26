@@ -15,6 +15,7 @@ const SolutionForm = () => {
     if (isChanged) {
       // Handle the save action
       console.log('Solution saved:', solution);
+      
     }
   };
 
