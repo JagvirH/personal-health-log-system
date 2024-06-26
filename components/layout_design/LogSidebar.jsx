@@ -13,7 +13,7 @@ const LogSidebar = ({logId}) => {
     { title: 'Initial_Assessment',name: 'Initial Assessment', imageSrc: '/assessment-alt.png', hoverImageSrc: '/assessment-alt-full.png' },
     { title: 'Professional_Opinion',name: 'Professional Opinion', imageSrc: '/user-md-chat.png', hoverImageSrc: '/user-md-chat-full.png' },
     { title: 'Journey',name: 'Journey', imageSrc: '/journey.png', hoverImageSrc: '/journey-full.png' },
-    { title: 'Your_solution',name: 'Your solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
+    { title: 'Your_Solution',name: 'Your solution', imageSrc: '/answer-alt.png', hoverImageSrc: '/answer-alt-full.png' }
   ];
 
   return (
