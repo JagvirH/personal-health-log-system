@@ -15,6 +15,7 @@ export default async function Page() {
     
     return (
         <div className='pl-2'>
+            
             <CreateLogForm userId={user?.id} tags={listOfTags}/>
         </div>
             

@@ -15,6 +15,9 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
   const [newTags, setNewTags] = useState([]);
   const [deletedTags, setDeletedTags] = useState([]);
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredTags, setFilteredTags] = useState(listOfTags);
+
   useEffect(() => {
     setIsChanged(
       currentDescription !== description || 
@@ -24,6 +27,16 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
       deletedTags.length > 0
     );
   }, [currentDescription, currentStatus, currentShare, description, status, share, newTags, deletedTags]);
+
+  useEffect(() => {
+    if (searchQuery === '') {
+      setFilteredTags(listOfTags);
+    } else {
+      setFilteredTags(listOfTags.filter(tag => 
+        tag.Title.toLowerCase().includes(searchQuery.toLowerCase())
+      ));
+    }
+  }, [searchQuery, listOfTags]);
 
   const handleDescriptionChange = (e) => {
     setCurrentDescription(e.target.value);
@@ -141,9 +154,16 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
             </div>
           </div>
         </div>
-        <div className='w-1/3'>
+        <div className='w-1/3 mb-4'>
+          <input
+            type='text'
+            placeholder='Search tags...'
+            className='bg-white rounded-xl p-2 w-full mb-2'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
           <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2 bg-[white]'>
-            {listOfTags.map(tag => (
+            {filteredTags.map(tag => (
               <div key={tag.Id} className='mr-4 mb-2'>
                 <label className='inline-flex items-center'>
                   <input
