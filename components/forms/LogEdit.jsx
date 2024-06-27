@@ -15,8 +15,8 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
   const [newTags, setNewTags] = useState([]);
   const [deletedTags, setDeletedTags] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredTags, setFilteredTags] = useState(listOfTags);
+  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
+  const [filteredTags, setFilteredTags] = useState(listOfTags); // New state for filtered tags
 
   useEffect(() => {
     setIsChanged(
@@ -36,7 +36,7 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
         tag.Title.toLowerCase().includes(searchQuery.toLowerCase())
       ));
     }
-  }, [searchQuery, listOfTags]);
+  }, [searchQuery, listOfTags]); // Effect to update filtered tags based on search query
 
   const handleDescriptionChange = (e) => {
     setCurrentDescription(e.target.value);
@@ -159,8 +159,8 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
             type='text'
             placeholder='Search tags...'
             className='bg-white rounded-xl p-2 w-full mb-2'
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery} // Added search input field
+            onChange={(e) => setSearchQuery(e.target.value)} // Handle search input change
           />
           <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2 bg-[white]'>
             {filteredTags.map(tag => (
