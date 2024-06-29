@@ -290,6 +290,29 @@ export async function toggleBookmark({ logId, bookmark }) {
     }
 }
 
+export async function getBookmarkedLogs({ userId }) {
+    let connection;
+    try {
+        connection = await connectToDB();  // Removed the extra semicolon
+
+        // Assuming there is a column for bookmarks, like `IsBookmarked`
+        const sql = `SELECT * FROM Logs WHERE Users_Id = ? AND Bookmark = ?`;
+        const check = [userId, 1];  // Changed "1" to 1 if it's an integer
+
+        const [rows] = await connection.query(sql, check);
+        //console.log("HERE --", rows);  // Logs the array of objects directly
+
+        return rows;  // Returning all matching logs
+    } catch (error) {
+        console.log("Error with fetching logs: ", error);
+    } finally {
+        if (connection) {
+            await connection.end();  // Ensures the connection is closed properly
+        }
+    }
+}
+
+
 
 
 /*
