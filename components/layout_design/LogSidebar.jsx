@@ -39,6 +39,7 @@ const LogSidebar = ({logId}) => {
                   height={70} 
                   className="hover-image"
                 />
+                
               
             </Link>
           </div>

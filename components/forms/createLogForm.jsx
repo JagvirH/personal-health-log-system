@@ -55,6 +55,7 @@ export default function CreateLogForm ({userId, tags}) {
         });
 
         router.push("/Logs");
+        window.location.reload();
     };
 
     const handleTagChange = (e) => {
@@ -107,7 +108,7 @@ export default function CreateLogForm ({userId, tags}) {
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
 
-                                <div className='max-h-40 overflow-y-auto border border-gray-300 rounded-md p-2'>
+                                <div className='max-h-20 overflow-y-auto border border-gray-300 rounded-md p-2'>
                                     {filteredTags.map(tag => (
                                         <div key={tag.Id} className='mr-4 mb-2'>
                                             <label className='inline-flex items-center'>

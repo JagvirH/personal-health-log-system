@@ -51,7 +51,8 @@ const ProfessionalOpinionForm = ({ logId }) => {
     e.preventDefault();
     try {
       await insertOrUpdateOpinion({ logId, whoId, description });
-      router.push(`/Logs/${logId}/Initial_Assessment`);
+      router.push(`/Logs/${logId}/Professional_Opinion`);
+      window.location.reload();
       // Optionally, handle success (e.g., show a message, redirect, etc.)
     } catch (error) {
       console.error('Error saving opinion:', error);

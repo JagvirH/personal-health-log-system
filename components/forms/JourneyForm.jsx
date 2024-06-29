@@ -1,11 +1,13 @@
 "use client";
 import { insertJourney } from '@/backend/database/journey';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
 
 const JourneyForm = ({ journey, logId }) => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     if (journey) {
@@ -27,7 +29,13 @@ const JourneyForm = ({ journey, logId }) => {
     } else {
       console.log('All fields are required');
     }
+
+    router.push(`/Logs/${logId}/Journey`)
+    window.location.reload();
+
   };
+
+  
 
   return (
     <div className=''>

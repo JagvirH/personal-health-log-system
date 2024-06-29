@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { editLogDescription } from '@/backend/database/logs';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
@@ -15,8 +15,8 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
   const [newTags, setNewTags] = useState([]);
   const [deletedTags, setDeletedTags] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
-  const [filteredTags, setFilteredTags] = useState(listOfTags); // New state for filtered tags
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredTags, setFilteredTags] = useState(listOfTags);
 
   useEffect(() => {
     setIsChanged(
@@ -36,7 +36,7 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
         tag.Title.toLowerCase().includes(searchQuery.toLowerCase())
       ));
     }
-  }, [searchQuery, listOfTags]); // Effect to update filtered tags based on search query
+  }, [searchQuery, listOfTags]);
 
   const handleDescriptionChange = (e) => {
     setCurrentDescription(e.target.value);
@@ -96,20 +96,48 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
       }
     }
 
-    router.push(`/Logs/${Id}/Initial_Assessment`);
+    router.push(`/Logs/${Id}/Initial_Assessment`)
+    window.location.reload();
   };
 
   return (
     <div className='flex flex-col p-4'>
       <div>Description:</div>
-      <form onSubmit={handleSubmit} className=''>
-        <textarea
-          className='bg-white rounded-xl p-2 w-full h-40'
-          value={currentDescription}
-          onChange={handleDescriptionChange}
-        />
-        <div className='flex flex-row'>
-          <div className='mt-2 w-1/2 pr-2'>
+      <form onSubmit={handleSubmit} className='flex flex-col'>
+        <div className='flex flex-row mb-4'>
+          <textarea
+            className='bg-white rounded-xl p-2 w-1/2 h-40 mr-2'
+            value={currentDescription}
+            onChange={handleDescriptionChange}
+          />
+          <div className='w-1/2 ml-2'>
+            <input
+              type='text'
+              placeholder='Search tags...'
+              className='bg-white rounded-xl p-2 w-full mb-2'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2 bg-[white]'>
+              {filteredTags.map(tag => (
+                <div key={tag.Id} className='mr-4 mb-2'>
+                  <label className='inline-flex items-center'>
+                    <input
+                      type='checkbox'
+                      value={tag.Id}
+                      checked={selectedTags.some(selectedTag => selectedTag.Id === tag.Id)}
+                      onChange={handleTagChange}
+                      className='form-checkbox'
+                    />
+                    <span className='ml-2'>{tag.Title}</span>
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className='flex flex-row mb-4'>
+          <div className='w-1/2 pr-2'>
             Status:
             <select
               className='bg-white rounded-xl p-2 w-full'
@@ -120,18 +148,16 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
               <option value='Solved'>Solved</option>
             </select>
           </div>
-          <div>
-            <div className='mt-2 w-full'>
-              Happy to Share:
-              <select
-                className='bg-white rounded-xl p-2 w-full'
-                value={currentShare ? '1' : '0'}
-                onChange={handleShareChange}
-              >
-                <option value='1'>Yes, I'm happy to share</option>
-                <option value='0'>No</option>
-              </select>
-            </div>
+          <div className='w-1/2 pl-2'>
+            Happy to Share:
+            <select
+              className='bg-white rounded-xl p-2 w-full'
+              value={currentShare ? '1' : '0'}
+              onChange={handleShareChange}
+            >
+              <option value='1'>Yes, I'm happy to share</option>
+              <option value='0'>No</option>
+            </select>
           </div>
         </div>
         <div className='py-4'>
@@ -152,31 +178,6 @@ const LogEdit = ({ Id, description, status, tags, listOfTags, share }) => {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-        <div className='w-1/3 mb-4'>
-          <input
-            type='text'
-            placeholder='Search tags...'
-            className='bg-white rounded-xl p-2 w-full mb-2'
-            value={searchQuery} // Added search input field
-            onChange={(e) => setSearchQuery(e.target.value)} // Handle search input change
-          />
-          <div className='max-h-40 overflow-y-auto border border-grey rounded-md p-2 bg-[white]'>
-            {filteredTags.map(tag => (
-              <div key={tag.Id} className='mr-4 mb-2'>
-                <label className='inline-flex items-center'>
-                  <input
-                    type='checkbox'
-                    value={tag.Id}
-                    checked={selectedTags.some(selectedTag => selectedTag.Id === tag.Id)}
-                    onChange={handleTagChange}
-                    className='form-checkbox'
-                  />
-                  <span className='ml-2'>{tag.Title}</span>
-                </label>
-              </div>
-            ))}
           </div>
         </div>
         <button
