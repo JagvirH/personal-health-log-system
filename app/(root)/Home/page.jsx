@@ -26,7 +26,7 @@ export default async function Page() {
                 Home
             </div>
             <div className='px-8 py-1 h-full'>
-                <div className='  w-1/2 h-[30vh]  overflow-y-auto border border-blue-500 p-4 bg-[#e8eced] rounded'>
+                <div className='  w-1/2 h-[30vh]  overflow-y-auto border  p-4 bg-[#e8eced] rounded'>
                     <HomeLogs logs={logs} />
                 </div>
             </div>
