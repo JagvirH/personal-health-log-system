@@ -22,7 +22,7 @@ export default async function Page() {
 
     return (
         <div>
-            <div className='page_title text-2xl font-bold mb-4'>
+            <div className=' mb-4 page_title'>
                 Home
             </div>
             <div className='px-8 py-1 h-full'>
