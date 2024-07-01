@@ -7,7 +7,7 @@ const LogBookmarkCard = ({ title, status, description, id }) => {
   const handleClick = () => {
     console.log(id);
     router.push(`/Logs/${id}/Initial_Assessment`)
-    window.location.reload();
+    //window.location.reload();
   };
 
   return (
