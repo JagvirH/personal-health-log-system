@@ -1,33 +1,38 @@
 "use client"
 
+import { insertOrUpdateSolution } from '@/backend/database/solution';
 import React, { useState, useEffect } from 'react';
 
-const SolutionForm = () => {
-  const [solution, setSolution] = useState('');
+const SolutionForm = ({ logId, dbSolution }) => {
+  const [solution, setSolution] = useState(dbSolution || ''); // Initialize with dbSolution
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
-    setIsChanged(solution.trim().length > 0);
-  }, [solution]);
+    setIsChanged(solution.trim() !== dbSolution.trim());
+  }, [solution, dbSolution]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isChanged) {
-      // Handle the save action
-      console.log('Solution saved:', solution);
-      
+      await insertOrUpdateSolution({ logId, solution });
+      setIsChanged(false); // Reset isChanged after saving
     }
+  };
+
+  const handleChange = (e) => {
+    setSolution(e.target.value);
+    setIsChanged(e.target.value.trim() !== dbSolution.trim());
   };
 
   return (
     <div className=''>
-      <form onSubmit={handleSubmit} className=" rounded-lg">
+      <form onSubmit={handleSubmit} className="rounded-lg">
         <div className="mb-4">
           <label className="block text-sm pb-1 font-medium text-gray-700">Write what your solution is</label>
           <textarea
             className="bg-white rounded-xl p-2 w-full h-48"
             value={solution}
-            onChange={(e) => setSolution(e.target.value)}
+            onChange={handleChange}
           />
         </div>
         <button
@@ -43,4 +48,3 @@ const SolutionForm = () => {
 };
 
 export default SolutionForm;
-

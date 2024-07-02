@@ -27,7 +27,7 @@ export async function LogCardWrapper() {
     return (
         <main>
             <div className="flex flex-wrap">
-                Hi
+                
                 {logs.map((log) => (
                     <div key={log.id} className="w-full sm:w-1/2 md:w-1/3 p-4 log_card">
                         <LogCard 
@@ -41,7 +41,7 @@ export async function LogCardWrapper() {
                         
                     </div>
                 ))}
-                Hi 2
+                
             </div>
         </main>
     );
