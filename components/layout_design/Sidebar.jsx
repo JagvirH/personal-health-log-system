@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, OrganizationProfile, SignedIn, SignOutButton } from '@clerk/nextjs';
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { addUser, checkUser } from '@/backend/database/onboarding';
 import Link from 'next/link'
@@ -42,6 +42,12 @@ export default async function Sidebar() {
                                 </Link>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <SignOutButton>
+                            Out
+                        </SignOutButton>
+                        
                     </div>
                 </div>
             </div>
