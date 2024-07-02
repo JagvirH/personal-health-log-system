@@ -43,9 +43,19 @@ export async function getLogs({ userId }) {
 
 export async function getLogs({ userId }) {
     let connection = await connectToDB();
-    
-    
-    
+    const sql = `
+        SELECT 
+            Logs.Id AS logId, 
+            Logs.Title AS logTitle, 
+            Logs.Description AS logDescription, 
+            Logs.Bookmark as logBookmark,
+            Tags.Id AS tagId, 
+            Tags.Title AS tagTitle 
+        FROM Logs 
+        LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
+        LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
+        WHERE Logs.Users_Id = ?
+    `;
     try {
         const [rows] = await connection.query(sql, [userId]);
         const logsMap = {};
