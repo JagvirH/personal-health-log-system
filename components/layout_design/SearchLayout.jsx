@@ -9,8 +9,11 @@ export function SearchLayout({ searchTerm }) {
         const fetchRankedLogs = async () => {
             if (searchTerm) {
                 try {
-                    const logs = await getSimilarityRank(searchTerm);
-                    setRankedLogs(logs);
+                    const results = await getSimilarityRank(searchTerm);
+                    //setRankedLogs(logs);
+                    console.log(results.log_ids)
+                    console.log(results.instructive_summary)
+                    //const advise = results.instructive_summary
                 } catch (error) {
                     console.error('Error fetching ranked logs:', error);
                 }
@@ -20,6 +23,14 @@ export function SearchLayout({ searchTerm }) {
         fetchRankedLogs();
     }, [searchTerm]);
 
+
+    return(
+        <div>
+            
+        </div>
+    )
+
+    /*
     return (
         <div className="flex flex-wrap ">
             <div className='bg-[green]'></div>
@@ -38,6 +49,7 @@ export function SearchLayout({ searchTerm }) {
             ))}
         </div>
     );
+    */
 }
 
 export default SearchLayout;
