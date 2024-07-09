@@ -7,6 +7,7 @@ const Page = async ({ params }) => {
 
     const logId = params.LogId;
     const log = await getlog(logId);
+    console.log(typeof logId)
     const listOfTags = await getTag()
     
     

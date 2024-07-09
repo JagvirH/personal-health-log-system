@@ -312,6 +312,103 @@ export async function getBookmarkedLogs({ userId }) {
     }
 }
 
+/*
+export async function getLogData({userId}) {
+    console.log(userId)
+    console.log(typeof userId)
+    let connection = await connectToDB();
+    const sql = `
+        SELECT 
+            Logs.Id AS logId, 
+            Logs.Title AS logTitle, 
+            Logs.Description AS logDescription, 
+            Logs.Bookmark AS logBookmark
+        FROM Logs 
+        WHERE Logs.Id = ?
+    `;
+
+    try {
+        const [rows] = await connection.query(sql, [userId]);
+        const logs = rows.map(row => ({
+            id: row.logId,
+            title: row.logTitle,
+            description: row.logDescription,
+            bookmark: row.logBookmark
+        }));
+        
+        console.log(logs);
+        return logs;
+    } catch (error) {
+        console.log("Error with getting logs: ", error);
+        return []; // Return an empty array or handle the error appropriately
+    } finally {
+        connection.close();
+    }
+}
+*/
+
+
+
+export async function getLogData({ userId }) {
+    let connection = await connectToDB();
+    const sql = `
+        SELECT 
+            Logs.Id AS logId, 
+            Logs.Title AS logTitle, 
+            Logs.Description AS logDescription, 
+            Logs.Bookmark AS logBookmark,
+            Tags.Id AS tagId, 
+            Tags.Title AS tagTitle,
+            Opinions.Description AS opinionDescription,
+            Opinions.WhoId AS opinionWhoId,
+            Who.Title AS whoName,
+            Solutions.Solution AS solution
+        FROM Logs 
+        LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
+        LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
+        LEFT JOIN Opinions ON Logs.Id = Opinions.LogId
+        LEFT JOIN Who ON Opinions.WhoId = Who.Id
+        LEFT JOIN Solutions ON Logs.Id = Solutions.LogId
+        WHERE Logs.Id = ?
+    `;
+
+    try {
+        const [rows] = await connection.query(sql, [userId]);
+        const logsMap = {};
+
+        rows.forEach(row => {
+            if (!logsMap[row.logId]) {
+                logsMap[row.logId] = {
+                    id: row.logId,
+                    title: row.logTitle,
+                    description: row.logDescription,
+                    tags: [],
+                    bookmark: row.logBookmark,
+                    opinions: [],
+                    solutions: []
+                };
+            }
+            if (row.tagId) {
+                logsMap[row.logId].tags.push({ id: row.tagId, title: row.tagTitle });
+            }
+            if (row.opinionDescription && row.whoName) {
+                logsMap[row.logId].opinions.push({ description: row.opinionDescription, who: row.whoName });
+            }
+            if (row.solution) {
+                logsMap[row.logId].solutions.push(row.solution);
+            }
+        });
+
+        const logs = Object.values(logsMap);
+        console.log(logs)
+        return logs;
+    } catch (error) {
+        console.log("Error with getting logs: ", error);
+        return []; // Return an empty array or handle the error appropriately
+    } finally {
+        connection.close();
+    }
+}
 
 
 
