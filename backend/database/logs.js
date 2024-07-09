@@ -384,23 +384,17 @@ export async function getLogData({ userId }) {
                     description: row.logDescription,
                     tags: [],
                     bookmark: row.logBookmark,
-                    opinions: [],
-                    solutions: []
+                    opinion: row.opinionDescription ? { description: row.opinionDescription, who: row.whoName } : null,
+                    solution: row.solution || null
                 };
             }
             if (row.tagId) {
                 logsMap[row.logId].tags.push({ id: row.tagId, title: row.tagTitle });
             }
-            if (row.opinionDescription && row.whoName) {
-                logsMap[row.logId].opinions.push({ description: row.opinionDescription, who: row.whoName });
-            }
-            if (row.solution) {
-                logsMap[row.logId].solutions.push(row.solution);
-            }
         });
 
         const logs = Object.values(logsMap);
-        console.log(logs)
+        console.log(logs);
         return logs;
     } catch (error) {
         console.log("Error with getting logs: ", error);
@@ -409,6 +403,7 @@ export async function getLogData({ userId }) {
         connection.close();
     }
 }
+
 
 
 
