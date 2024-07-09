@@ -38,7 +38,7 @@ export function SearchLayout({ searchTerm }) {
                     {rankedLogs.map((log, index) => (
                         <div key={index} className="w-full p-2 border-b border-gray-300">
                             <h3 className="font-bold">{log.title}</h3>
-                            
+                            <LogSimilarCard logData={log} />
                         </div>
                     ))}
                 </div>
