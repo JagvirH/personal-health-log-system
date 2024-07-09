@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LogRankCard = ({ title, id, description, similarity }) => {
+const LogRankCard = ({ title, id, description, }) => {
   return (
     <div className=''>
       
@@ -16,9 +16,7 @@ const LogRankCard = ({ title, id, description, similarity }) => {
                         {description && description.length > 86 ? description.slice(0, 86) + '...' : description}
                     </div>
                 </div>
-                <div className='pt-1'>
-                    Similarity: {similarity}
-                </div>
+                
             </div>
         </div>
       

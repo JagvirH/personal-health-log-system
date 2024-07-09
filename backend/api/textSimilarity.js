@@ -1,6 +1,7 @@
 'use server'
 
-import { getLogsForTextSimilarity } from '../database/logs';
+import { getLogData, getLogsForTextSimilarity } from '../database/logs';
+
 
 const axios = require('axios');
 
@@ -43,11 +44,29 @@ export default async function getSimilarityRank(search) {
 
         // Access the 'log_ids' and 'instructive_summary' in the response data
         const { log_ids, instructive_summary } = response.data;
-        return { log_ids, instructive_summary };
+
+        //console.log(log_ids)
+        // Create an array to store the logs
+        const logs = [];
+
+        // Iterate through each log_id and fetch the corresponding log data
+        for (const log_id of log_ids) {
+            const logData = await getLogData({ userId: log_id }); // Assuming getLogData expects an object with userId
+            if (Array.isArray(logData)) {
+                logs.push(...logData); // If logData is an array, spread it into logs
+            } else {
+                logs.push(logData); // If logData is a single object, push it directly
+            }
+        }
+
+        //console.log(logs)
+
+        return { logs, instructive_summary };
 
     } catch (error) {
         console.error('Error fetching similarity rank and summary:', error);
         throw error;
     }
 }
+
 
