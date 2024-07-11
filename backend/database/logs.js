@@ -394,7 +394,7 @@ export async function getLogData({ userId }) {
         });
 
         const logs = Object.values(logsMap);
-        console.log(logs);
+        //console.log(logs);
         return logs;
     } catch (error) {
         console.log("Error with getting logs: ", error);
