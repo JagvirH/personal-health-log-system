@@ -3,8 +3,12 @@ import getSimilarityRank from '@/backend/api/textSimilarity';
 import LogRankCard from '../Cards/LogRankCard';
 import LogSimilarCard from '../Cards/LogSimilarCard';
 import { getLogData, getlog } from '@/backend/database/logs';
+import Modal from '../Popup/Modal';
+import LogModalCard from '../Cards/LogModalCard';
 
 export function SearchLayout({ searchTerm }) {
+    const [showModal, setShowModal] = useState(false);
+    const [selectedLog, setSelectedLog] = useState(null);
     const [rankedLogs, setRankedLogs] = useState([]);
     const [summary, setSummary] = useState('');
 
@@ -24,6 +28,16 @@ export function SearchLayout({ searchTerm }) {
         fetchRankedLogs();
     }, [searchTerm]);
 
+    const handleCardClick = (log) => {
+        setSelectedLog(log);
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setSelectedLog(null);
+    };
+
     if (searchTerm) {
         return (
             <div className='flex flex-row p-2'>
@@ -36,15 +50,23 @@ export function SearchLayout({ searchTerm }) {
                 <div className="h-96 overflow-y-scroll w-2/3 p-2">
                     <div className="grid grid-cols-2 gap-4 w-full">
                         {rankedLogs.map((log, index) => (
-                        <div key={index} className="w-full p-2 border-b border-gray-300">
-                            <LogSimilarCard logData={log} />
-                        </div>
+                            <div
+                                key={index}
+                                className="w-full p-2 border-b border-gray-300 cursor-pointer"
+                                onClick={() => handleCardClick(log)}
+                            >
+                                <LogSimilarCard logData={log} />
+                            </div>
                         ))}
                     </div>
                 </div>
-
-                
-
+                <Modal show={showModal} handleClose={handleCloseModal}>
+                    <div className='w-[60vh]'>
+                        <LogModalCard logData={selectedLog}/>
+                        
+                    </div>
+                    
+                </Modal>
             </div>
         );
     }

@@ -27,7 +27,7 @@ const LogTopBar = ({ logId, log }) => {
   const handleDeleteClick = async () => {
     try {
       await deleteLog({ logId });
-      console.log('Log deleted');
+      //console.log('Log deleted');
       // Optionally, redirect or update the state to reflect the deletion
       setShowModal(false); // Close the modal after deletion
     } catch (error) {
