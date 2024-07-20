@@ -30,6 +30,9 @@ export default async function Page() {
                     <HomeLogs logs={logs} />
                 </div>
             </div>
+            <div>
+                Hi
+            </div>
         </div>
     );
 }
