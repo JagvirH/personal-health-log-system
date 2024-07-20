@@ -15,7 +15,7 @@ const LogSimilarCard = ({logData}) => {
                     <div className='mt-2 '>
                         Description:
                         <br />
-                        <div className='border border-[#1479fd] rounded background_main'>
+                        <div className='border border-[#1479fd] rounded main_background'>
                             {log.description}
                         </div>
                     </div>

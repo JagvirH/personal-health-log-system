@@ -33,15 +33,18 @@ export function SearchLayout({ searchTerm }) {
                         <div>{summary && <p>{summary}</p>}</div>
                     </div>
                 </div>
-
-                <div className="flex flex-wrap w-2/3 p-2">
-                    {rankedLogs.map((log, index) => (
+                <div className="h-96 overflow-y-scroll w-2/3 p-2">
+                    <div className="grid grid-cols-2 gap-4 w-full">
+                        {rankedLogs.map((log, index) => (
                         <div key={index} className="w-full p-2 border-b border-gray-300">
-                            <h3 className="font-bold">{log.title}</h3>
                             <LogSimilarCard logData={log} />
                         </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
+
+                
+
             </div>
         );
     }
