@@ -10,11 +10,11 @@ export async function getNews(){
     const url = 'https://newsapi.org/v2/everything?q=health&apiKey='+ key
 
     try {
-        console.log(1)
+        
         const response = await axios.get(url); // Use await to wait for the response
 
         if (response.status === 200) {
-            console.log(2)
+            
             const data = response.data;
             // data is successfully parsed as a JSON object:
             //console.log(data);

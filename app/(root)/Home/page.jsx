@@ -22,10 +22,12 @@ export default async function Page() {
     const logs = await getBookmarkedLogs({ userId });
     const news = await getNews();
 
-    const firstNewsItem = news[0];
+    console.log(news)
+
+    //const firstNewsItem = news[0];
 
     // Log the first news item
-    console.log(firstNewsItem);
+    //console.log(firstNewsItem);
 
     return (
         <div>
