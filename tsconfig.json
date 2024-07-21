@@ -16,6 +16,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": ".",                        // Add this line
+    "paths": {                             // Add this line
+      "@/*": ["./*"]                       // Add this line
+    },
     "plugins": [
       {
         "name": "next"
@@ -23,10 +27,11 @@
     ]
   },
   "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "next-env.d.js",
+    ".next/types/**/*.js",
+    "**/*.js",
+    "**/*.jsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

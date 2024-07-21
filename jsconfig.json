@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",                           // Add this line to set the base URL for module resolution
     "paths": {
       "@/*": ["./*"]
     },
-    "jsx": "react"
-  }
+    "jsx": "react",
+    // ... other options
+  },
+  // ... other settings
 }
