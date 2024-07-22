@@ -258,6 +258,7 @@ export async function getLogsId({ userId, title, description }) {
 export async function deleteLog({logId}) {
     let connection = await connectToDB();
     const sql = `DELETE FROM Logs WHERE Id = ?;`;
+    //fixed
     //console.log(logId)
 
     // Log the SQL statement and parameters for debugging

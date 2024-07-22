@@ -31,13 +31,17 @@ export async function insertOrUpdateSolution({logId,  solution }) {
     let connection = await connectToDB();
     const selectSql = 'SELECT * FROM Solutions WHERE LogId = ?';
     const insertSql = 'INSERT INTO Solutions (LogId, Solution) VALUES ( ?, ?)';
-    const updateSql = 'UPDATE Solutions SET Solutions = ? WHERE LogId = ?';
+    const updateSql = 'UPDATE Solutions SET Solution = ? WHERE LogId = ?';
 
     try {
         const [results] = await connection.execute(selectSql, [logId]);
         if (results.length > 0) {
             // Update existing opinion
-            await connection.execute(updateSql, [logId, solution]);
+            console.log("HEREREFIUDJRFIOEJR ----> " + typeof logId)
+            const logId2 = parseInt(logId, 10);
+            console.log("HEREREFIUDJRFIOEJR ----> " + typeof logId)
+            console.log("HEREREFIUDJRFIOEJR ----> " + logId)
+            await connection.execute(updateSql, [ solution, logId2]);
         } else {
             // Insert new opinion
             await connection.execute(insertSql, [logId, solution]);
