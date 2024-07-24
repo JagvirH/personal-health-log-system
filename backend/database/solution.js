@@ -36,11 +36,9 @@ export async function insertOrUpdateSolution({logId,  solution }) {
     try {
         const [results] = await connection.execute(selectSql, [logId]);
         if (results.length > 0) {
-            // Update existing opinion
-            console.log("HEREREFIUDJRFIOEJR ----> " + typeof logId)
+
             const logId2 = parseInt(logId, 10);
-            console.log("HEREREFIUDJRFIOEJR ----> " + typeof logId)
-            console.log("HEREREFIUDJRFIOEJR ----> " + logId)
+
             await connection.execute(updateSql, [ solution, logId2]);
         } else {
             // Insert new opinion
