@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { toggleBookmark } from '@/backend/database/logs'; // Ensure this import path is correct
 
-export default function Sidebar({ title, tags, description, id, bookmark: initialBookmark }) {
+export default function LogCard({ title, tags, description, id, bookmark: initialBookmark }) {
     const [isHovered, setIsHovered] = useState(false);
     const [bookmark, setBookmark] = useState(initialBookmark);
 
@@ -20,6 +20,19 @@ export default function Sidebar({ title, tags, description, id, bookmark: initia
             console.error('Failed to update bookmark:', error);
         }
     };
+
+    const getIcon = (type) => {
+        switch(type) {
+            case 'Body':
+                return '/body-icon.png'; // Replace with your actual icon path
+            case 'Symptom':
+                return '/symptom-icon.png'; // Replace with your actual icon path
+            case 'Condition':
+                return '/condition-icon.png'; // Replace with your actual icon path
+            default:
+                return null;
+        }
+    }
 
     return (
         <div className='flex w-96 border hover:border-[#1479fd] rounded-xl shadow-2xl'>
@@ -47,7 +60,17 @@ export default function Sidebar({ title, tags, description, id, bookmark: initia
 
                 <div className='mt-2 flex'>
                     Tags: {tags.map((tag, index) => (
-                        <div key={index} className='px-1'><span className='card_tag pl-2'>{tag}</span></div>
+                        <div key={index} className='px-1'>
+                            <span className={`${tag.type === 'Body' ? 'body_tag' : tag.type === 'Symptom' ? 'symptom_tag' : 'condition_tag'} pl-2`}>
+                                <Image 
+                                    src={getIcon(tag.type)} 
+                                    alt={`${tag.type} icon`} 
+                                    width={16} 
+                                    height={16} 
+                                />
+                                {tag.title}
+                            </span>
+                        </div>
                     ))}
                 </div>
                 <div className='mt-2'>

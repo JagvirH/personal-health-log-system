@@ -32,7 +32,7 @@ export async function LogCardWrapper() {
                     <div key={log.id} className="w-full sm:w-1/2 md:w-1/3 p-4 log_card">
                         <LogCard 
                             title={log.title} 
-                            tags={log.tags.map(tag => tag.title)} 
+                            tags={log.tags.map(tag => ({ title: tag.title, type: tag.type }))} 
                             description={log.description} 
                             id={log.id}
                             bookmark={log.bookmark}
@@ -48,16 +48,3 @@ export async function LogCardWrapper() {
 }
 
 
-/*
-<div className="flex flex-wrap">
-                {logCardsData.map((logCard, index) => (
-                    <div key={index} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4 log_card'>
-                        <LogCard title={logCard.title} tags={logCard.tags} description={logCard.description} />
-                    </div>
-                ))}
-            </div>
-
-
-    
-
-*/

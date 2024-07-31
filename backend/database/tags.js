@@ -32,7 +32,7 @@ export async function addTags({ userId, title, description, tags }) {
         console.log("HERE")
         if (log) {
             const logId = log.Id;  // Assuming the log object has an 'Id' field
-            console.log("HERE IS THE NEW ID:  ---> " + logId);
+            //console.log("HERE IS THE NEW ID:  ---> " + logId);
 
             const sql = 'INSERT INTO Log_Tags (LogId, TagId) VALUES (?, ?)';
 
