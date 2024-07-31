@@ -64,6 +64,23 @@
         @apply border border-[#1479fd] rounded-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
     }
 
+    /* body part */
+
+    .body_tag {
+        @apply border border-[#34a853] rounded-xl text-sm text-center px-2 py-1 text-[#34a853] bg-[#e6f4ea] flex items-center justify-center gap-2;
+    }
+    
+    /* Symptoms Tag */
+    .symptom_tag {
+        @apply border border-[#ea4335] rounded-xl text-sm text-center px-2 py-1 text-[#ea4335] bg-[#fce8e6] flex items-center justify-center gap-2;
+    }
+    
+    /* Conditions Tag */
+    .condition_tag {
+        @apply border border-[#fbbc05] rounded-xl text-sm text-center px-2 py-1 text-[#fbbc05] bg-[#fef7e0] flex items-center justify-center gap-2;
+    }
+
+
     .card_tag_remove{
         @apply border-t border-l border-b border-[#1479fd] rounded-l-xl text-sm text-center px-2 py-1 text-[#1479fd] bg-[#e1e8ed]
     }

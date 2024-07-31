@@ -50,7 +50,8 @@ export async function getLogs({ userId }) {
             Logs.Description AS logDescription, 
             Logs.Bookmark as logBookmark,
             Tags.Id AS tagId, 
-            Tags.Title AS tagTitle 
+            Tags.Title AS tagTitle,
+            Tags.Type AS tagType
         FROM Logs 
         LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
         LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
@@ -71,7 +72,7 @@ export async function getLogs({ userId }) {
                 };
             }
             if (row.tagId) {
-                logsMap[row.logId].tags.push({ id: row.tagId, title: row.tagTitle });
+                logsMap[row.logId].tags.push({ id: row.tagId, title: row.tagTitle, type: row.tagType });
             }
         });
 
