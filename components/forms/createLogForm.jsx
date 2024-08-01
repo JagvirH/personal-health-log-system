@@ -36,6 +36,10 @@ export default function CreateLogForm ({userId, tags}) {
         }
     }, [searchQuery, tags]);
 
+    useEffect(() => {
+        autoSelectTags();
+    }, [description]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('Title:', title);
@@ -77,6 +81,27 @@ export default function CreateLogForm ({userId, tags}) {
             default:
                 return null;
         }
+    };
+
+    const getTagClass = (type) => {
+        switch(type) {
+            case 'Body':
+                return 'body_tag';
+            case 'Symptom':
+                return 'symptom_tag';
+            case 'Condition':
+                return 'condition_tag';
+            default:
+                return '';
+        }
+    };
+
+    const autoSelectTags = () => {
+        const words = description.split(/\s+/);
+        const matchingTags = tags.filter(tag => words.includes(tag.Title));
+        const matchingTagIds = matchingTags.map(tag => tag.Id);
+
+        setSelectedTagIds(matchingTagIds);
     };
 
     return (
@@ -129,6 +154,7 @@ export default function CreateLogForm ({userId, tags}) {
                                                 <input
                                                     type='checkbox'
                                                     value={tag.Id}
+                                                    checked={selectedTagIds.includes(tag.Id)}
                                                     onChange={handleTagChange}
                                                     className='form-checkbox'
                                                 />
@@ -147,7 +173,7 @@ export default function CreateLogForm ({userId, tags}) {
 
                                 <div className='mt-4 flex flex-wrap'>
                                     {selectedTagIds.map((tagId, index) => (
-                                        <div key={index} className='card_tag px-2 py-1 mr-2 mb-2'>
+                                        <div key={index} className={`${getTagClass(tags.find(tag => tag.Id === tagId).Type)} px-2 py-1 mr-2 mb-2`}>
                                             <Image 
                                                 src={getIcon(tags.find(tag => tag.Id === tagId).Type)} 
                                                 alt={`${tags.find(tag => tag.Id === tagId).Type} icon`} 
