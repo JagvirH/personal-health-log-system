@@ -22,7 +22,8 @@ export default async function Page() {
     const logs = await getBookmarkedLogs({ userId });
     const news = await getNews();
 
-    console.log(news)
+    console.log("test1 --> " + news.articles[0].title)
+    //console.log(news)
 
     //const firstNewsItem = news[0];
 
@@ -49,10 +50,23 @@ export default async function Page() {
                 </div>
             </div>
             <div>
-                {news[0]}
+                
             </div>
         </div>
     );
 }
 
 //bg-[#e8eced]
+
+/*
+{
+      source: [Object],
+      author: 'Jeff Lunden',
+      title: 'Nonprofit pairs sighted riders with visually impaired riders on tandem bikes for free',
+      description: "Riders who participate in InTandem Cycling in New York find out it's more than just riding a bike and more than just exercise. It's socialization, good for your mental health and its teamwork.",
+      url: 'https://www.npr.org/2024/07/02/nx-s1-5018682/nonprofit-pairs-sighted-riders-with-visually-impaired-riders-on-tandem-bikes-for-free',
+      urlToImage: 'https://media.npr.org/include/images/facebook-default-wide-s1400-c100.jpg',
+      publishedAt: '2024-07-02T09:10:22Z',
+      content: "Riders who participate in InTandem Cycling in New York find out it's more than just riding a bike and more than just exercise. It's socialization, good for your mental health and its teamwork."
+    }
+*/
