@@ -87,4 +87,4 @@ export function SearchLayout({ searchTerm }) {
 
 export default SearchLayout;
 
-//test merge
+//test merge2
