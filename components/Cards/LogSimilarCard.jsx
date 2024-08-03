@@ -2,7 +2,7 @@ import React from 'react'
 
 const LogSimilarCard = ({logData}) => {
     const log = logData
-    console.log(log)
+    //console.log(log)
     //console.log(log.log.title) {log.title} {log.description && log.description.length > 86 ? log.description.slice(0, 86) + '...' : log.description}
     return (
         <div className=''>
