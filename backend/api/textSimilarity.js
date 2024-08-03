@@ -29,6 +29,7 @@ export default async function getSimilarityRank(search) {
 
 */
 
+/*
 export default async function getSimilarityRank(search) {
     const data = await getLogsForTextSimilarity();
 
@@ -61,12 +62,52 @@ export default async function getSimilarityRank(search) {
 
         //console.log(logs)
 
-        return { logs, instructive_summary };
+        return { logs, instructive_summary, top_tags };
 
     } catch (error) {
         console.error('Error fetching similarity rank and summary:', error);
         throw error;
     }
 }
+
+*/
+
+export default async function getSimilarityRank(search) {
+    const data = await getLogsForTextSimilarity();
+
+    try {
+        const response = await axios.post('http://127.0.0.1:5000/get_solutions_summary', {
+            search: search,
+            data: data  // Send the list of logs in the request body
+        }, {
+            headers: {
+                'Content-Type': 'application/json'  // Ensure the header is correctly set
+            }
+        });
+
+        // Access the 'log_ids', 'instructive_summary', and 'top_tags' in the response data
+        const { log_ids, instructive_summary, top_tags } = response.data;
+
+        // Create an array to store the logs
+        const logs = [];
+
+        // Iterate through each log_id and fetch the corresponding log data
+        for (const log_id of log_ids) {
+            const logData = await getLogData({ userId: log_id }); // Assuming getLogData expects an object with userId
+            if (Array.isArray(logData)) {
+                logs.push(...logData); // If logData is an array, spread it into logs
+            } else {
+                logs.push(logData); // If logData is a single object, push it directly
+            }
+        }
+
+        return { logs, instructive_summary, top_tags };
+
+    } catch (error) {
+        console.error('Error fetching similarity rank and summary:', error);
+        throw error;
+    }
+}
+
 
 

@@ -9,7 +9,7 @@ import '../../app/globals.css';
 
 export default async function Sidebar() {
     // Define a list of items
-    const items = ['Home', 'Logs', 'Search'];
+    const items = ['Home', 'Logs', 'Search','Test'];
 
     return (
         <div className='sidebar_background rounded-r-xl border border-[#1479fd]'>

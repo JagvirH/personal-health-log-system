@@ -11,6 +11,7 @@ export function SearchLayout({ searchTerm }) {
     const [selectedLog, setSelectedLog] = useState(null);
     const [rankedLogs, setRankedLogs] = useState([]);
     const [summary, setSummary] = useState('');
+    const [topTags, setTopTags] = useState([]);
 
     useEffect(() => {
         const fetchRankedLogs = async () => {
@@ -19,6 +20,8 @@ export function SearchLayout({ searchTerm }) {
                     const results = await getSimilarityRank(searchTerm);
                     setRankedLogs(results.logs);  // Set the ranked logs
                     setSummary(results.instructive_summary);  // Set the instructive summary
+                    setTopTags(results.top_tags);  // Set the top tags
+                    console.log(topTags)
                 } catch (error) {
                     console.error('Error fetching ranked logs:', error);
                 }
@@ -45,6 +48,16 @@ export function SearchLayout({ searchTerm }) {
                     <div>Advised Summary:</div>
                     <div className='border-grey bg-white'>
                         <div>{summary && <p>{summary}</p>}</div>
+                        <div className='mt-2'>
+                            Top Tags:
+                            {topTags.map((tag, index) => (
+                                <div key={index} className='px-1'>
+                                    <span className={`${tag.type === 'Body' ? 'body_tag' : tag.type === 'Symptom' ? 'symptom_tag' : 'condition_tag'} pl-2`}>
+                                        {tag.Title} Hi
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="h-96 overflow-y-scroll w-2/3 p-2">
@@ -63,9 +76,7 @@ export function SearchLayout({ searchTerm }) {
                 <Modal show={showModal} handleClose={handleCloseModal}>
                     <div className='w-[60vh]'>
                         <LogModalCard logData={selectedLog}/>
-                        
                     </div>
-                    
                 </Modal>
             </div>
         );
