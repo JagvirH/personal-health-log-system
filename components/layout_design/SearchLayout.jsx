@@ -114,5 +114,3 @@ export function SearchLayout({ searchTerm }) {
 }
 
 export default SearchLayout;
-
-//test 2
