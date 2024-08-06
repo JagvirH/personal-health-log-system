@@ -29,3 +29,16 @@ export async function getJourneys({ logId }) {
         connection.end();
     }
 }
+
+export async function deleteJourney({ logId, journeyId }) {
+    let connection = await connectToDB();
+
+    const sql = 'DELETE FROM Journeys WHERE LogId = ? AND Id = ?';
+    try {
+        await connection.execute(sql, [logId, journeyId]);
+    } catch (error) {
+        console.error("Error deleting journey:", error);
+    } finally {
+        connection.end();
+    }
+}
