@@ -64,7 +64,7 @@ export function SearchLayout({ searchTerm }) {
                         <div>{summary && <p>{summary}</p>}</div>
                         
                     </div>
-                    
+
                     Top Tags:
                     <div className='border-grey bg-white'>
                     
@@ -114,3 +114,5 @@ export function SearchLayout({ searchTerm }) {
 }
 
 export default SearchLayout;
+
+//test
