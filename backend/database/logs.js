@@ -154,7 +154,8 @@ export async function getlog(logId) {
                 Logs.Bookmark AS logBookmark,
                 Logs.Share AS logShare,
                 Tags.Id AS tagId, 
-                Tags.Title AS tagTitle
+                Tags.Title AS tagTitle,
+                Tags.Type AS tagType
             FROM Logs 
             LEFT JOIN Log_Tags ON Logs.Id = Log_Tags.LogId 
             LEFT JOIN Tags ON Log_Tags.TagId = Tags.Id 
@@ -176,7 +177,7 @@ export async function getlog(logId) {
             Title: results[0].logTitle,
             Description: results[0].logDescription,
             
-            Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle })).filter(tag => tag.Id !== null), // Filter out null tags
+            Tags: results.map(row => ({ Id: row.tagId, Title: row.tagTitle, type:row.tagType })).filter(tag => tag.Id !== null), // Filter out null tags
             Status: results[0].logStatus,
             Bookmark: results[0].logBookmark,
             Share: results[0].logShare,
