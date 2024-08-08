@@ -87,13 +87,13 @@ const JourneyForm = ({ journey, logId }) => {
           <div className='flex flex-row'>
             <button
               type='submit'
-              className='blue_button w-1/2'
+              className='px-2 blue_button w-1/2 '
             >
               Save
             </button>
             <button
               type='button'
-              className='blue_button w-1/2'
+              className='px-2 blue_button w-1/2 px-2'
               onClick={handleDelete}
             >
               Delete

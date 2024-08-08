@@ -56,7 +56,7 @@ const LogTopBar = ({ logId, log }) => {
         <div className="pt-4 flex flex-row">
           <div className="border-grey p-2 flex items-center w-4/5">
             <div className="justify-center items-center p-1 md-text">Tags: </div>
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap items-center'>
               {log.Tags.map((tag, index) => (
                 <div key={index} className='px-1 mb-2'>
                   <span className={`flex items-center ${tag.type === 'Body' ? 'body_tag' : tag.type === 'Symptom' ? 'symptom_tag' : 'condition_tag'} pl-2`}>

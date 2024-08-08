@@ -12,43 +12,38 @@ export default async function Sidebar() {
     const items = ['Home', 'Logs', 'Search','Test'];
 
     return (
-        <div className='sidebar_background rounded-r-xl border border-[#1479fd]'>
-            <div className='flex h-screen'>
-                <div className='h-full'>
-                    <div className='blue_text_title underline underline-offset-4'>
+        <div className='sidebar_background rounded-r-xl border border-[#1479fd] h-full'>
+            <div className='flex flex-col h-screen'>
+                <div>
+                    <div className='blue_text_title underline underline-offset-4 p-4'>
                         Personal Health Log
                     </div>
                     <div className='pt-8'>
                         <ul className="list-none">
-                            
                             {items.map((item, index) => (
-                                <Link href={`/${item}`} >
-                                    <li key={index} className="sidebar_button p-4 ">
-                                    
+                                <Link href={`/${item}`} key={index}>
+                                    <li className="sidebar_button p-4">
                                         {item}
-                                    
                                     </li>
                                 </Link>
                             ))}
                         </ul>
                     </div>
-                    <div>
-                        <div className='flex justify-center p-4 h-[10vh]'>
-                            <div className='flex w-full h-full'>
-                                <Link href={'/Create'}>
-                                    <div className='blue_button text-lg' >
-                                        Create + 
-                                    </div>
-                                </Link>
+                    <div className='flex justify-center p-4'>
+                        <Link href={'/Create'}>
+                            <div className='blue_button text-lg'>
+                                Create +
                             </div>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className='mt-auto p-4'>
+                    <SignOutButton>
+                        <div className='blue_button text-lg'>
+                            Log Out
                         </div>
-                    </div>
-                    <div>
-                        <SignOutButton>
-                            Out
-                        </SignOutButton>
-                        
-                    </div>
+                    </SignOutButton>
                 </div>
             </div>
         </div>
