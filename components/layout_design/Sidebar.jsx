@@ -3,6 +3,7 @@ import { ClerkProvider, OrganizationProfile, SignedIn, SignOutButton } from '@cl
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { addUser, checkUser } from '@/backend/database/onboarding';
 import Link from 'next/link'
+import Image from 'next/image';
 
 // Importing Tailwind CSS styles
 import '../../app/globals.css';
@@ -15,8 +16,14 @@ export default async function Sidebar() {
         <div className='sidebar_background rounded-r-xl border border-[#1479fd] h-full'>
             <div className='flex flex-col h-screen'>
                 <div>
-                    <div className='blue_text_title underline underline-offset-4 p-4'>
-                        Personal Health Log
+                    <div className='blue_text_title underline underline-offset-4'>
+                        
+                        <Image 
+                        src='/logo.png' 
+                        alt='logo' 
+                        width={1300} 
+                        height={1300} 
+                      />
                     </div>
                     <div className='pt-8'>
                         <ul className="list-none">
