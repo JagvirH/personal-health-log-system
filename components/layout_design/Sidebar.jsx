@@ -38,7 +38,7 @@ export default async function Sidebar() {
                     </div>
                 </div>
 
-                <div className='mt-auto p-4'>
+                <div className='mt-auto p-4 pb-24'>
                     <SignOutButton>
                         <div className='blue_button text-lg'>
                             Log Out
