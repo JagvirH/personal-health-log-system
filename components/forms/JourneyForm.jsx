@@ -93,7 +93,7 @@ const JourneyForm = ({ journey, logId }) => {
             </button>
             <button
               type='button'
-              className='px-2 blue_button w-1/2 px-2'
+              className='px-2blue_button w-1/2 px-2'
               onClick={handleDelete}
             >
               Delete

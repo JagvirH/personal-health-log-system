@@ -11,7 +11,7 @@ export default async function Page() {
                 Logs
                 <hr/>
             </div>
-            <div className='pl-8 flex flex-wrap'>
+            <div className=' flex flex-wrap'>
                 <LogCardWrapper />
             </div>
         </div>

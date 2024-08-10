@@ -77,7 +77,7 @@ export default function LogCard({ title, tags, description, id, bookmark: initia
                     Description:
                     <br />
                     <div className='border border-[#1479fd] rounded main_background p-1'>
-                        {description && description.length > 86 ? description.slice(0, 140) + '...' : description}
+                        {description && description.length > 86 ? description.slice(0, 70) + '...' : description}
                     </div>
                 </div>
                 <div className='pt-1'>

@@ -1,9 +1,11 @@
+
 import React from 'react';
 import { ClerkProvider, OrganizationProfile, SignedIn, SignOutButton } from '@clerk/nextjs';
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { addUser, checkUser } from '@/backend/database/onboarding';
 import Link from 'next/link'
 import Image from 'next/image';
+
 
 // Importing Tailwind CSS styles
 import '../../app/globals.css';
@@ -28,9 +30,10 @@ export default async function Sidebar() {
                     <div className='pt-8'>
                         <ul className="list-none">
                             {items.map((item, index) => (
-                                <Link href={`/${item}`} key={index}>
+                                <Link href={`/${item}`} key={index} >
                                     <li className="sidebar_button p-4">
                                         {item}
+                                        
                                     </li>
                                 </Link>
                             ))}
