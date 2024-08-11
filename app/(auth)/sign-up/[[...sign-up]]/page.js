@@ -1,5 +1,9 @@
 import { SignUp } from "@clerk/nextjs";
 
 export default function Page() {
-  return <SignUp path="/sign-up" />;
+  return (
+    <div className="flex justify-center items-center pt-24">
+      <SignUp path="/sign-up" />
+    </div>  
+    );
 }

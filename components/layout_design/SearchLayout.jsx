@@ -11,15 +11,16 @@ export function SearchLayout({ searchTerm }) {
     const [rankedLogs, setRankedLogs] = useState([]);
     const [summary, setSummary] = useState('');
     const [topTags, setTopTags] = useState([]);
+    const [isLoading, setIsLoading] = useState(false); // New loading state
 
     const getIcon = (type) => {
         switch(type) {
             case 'Body':
-                return '/body-icon.png'; // Replace with your actual icon path
+                return '/body-icon.png';
             case 'Symptom':
-                return '/symptom-icon.png'; // Replace with your actual icon path
+                return '/symptom-icon.png';
             case 'Condition':
-                return '/condition-icon.png'; // Replace with your actual icon path
+                return '/condition-icon.png';
             default:
                 return null;
         }
@@ -28,6 +29,7 @@ export function SearchLayout({ searchTerm }) {
     useEffect(() => {
         const fetchRankedLogs = async () => {
             if (searchTerm) {
+                setIsLoading(true); // Start loading
                 try {
                     const results = await getSimilarityRank(searchTerm);
                     setRankedLogs(results.logs);  // Set the ranked logs
@@ -38,6 +40,8 @@ export function SearchLayout({ searchTerm }) {
                     console.log("Fetched Ranked Logs:", results.logs);
                 } catch (error) {
                     console.error('Error fetching ranked logs:', error);
+                } finally {
+                    setIsLoading(false); // End loading
                 }
             }
         };
@@ -55,6 +59,14 @@ export function SearchLayout({ searchTerm }) {
         setSelectedLog(null);
     };
 
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-full">
+                <div className="loader"></div> {/* Your loading icon or animation */}
+            </div>
+        );
+    }
+
     if (searchTerm) {
         return (
             <div className='flex flex-row p-2'>
@@ -62,15 +74,11 @@ export function SearchLayout({ searchTerm }) {
                     <div>Advised Summary:</div>
                     <div className='border-grey bg-white'>
                         <div>{summary && <p>{summary}</p>}</div>
-                        
                     </div>
 
                     Top Tags:
                     <div className='border-grey bg-white'>
-                    
-                    
                         <div className='mt-2 flex'>
-                            
                             {topTags && topTags.map((tag, index) => (
                                 <div key={index} className='px-1'>
                                     <span className={`${tag.type === 'Body' ? 'body_tag' : tag.type === 'Symptom' ? 'symptom_tag' : 'condition_tag'} pl-2`}>
@@ -86,9 +94,8 @@ export function SearchLayout({ searchTerm }) {
                             ))}
                         </div>
                     </div>
-
                 </div>
-                <div className="h-96 overflow-y-scroll w-2/3 p-2">
+                <div className="h-[50vh] overflow-y-scroll w-2/3 p-2">
                     <div className="grid grid-cols-2 gap-4 w-full">
                         {rankedLogs.map((log, index) => (
                             <div
