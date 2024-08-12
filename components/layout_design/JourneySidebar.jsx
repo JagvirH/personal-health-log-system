@@ -27,26 +27,31 @@ const JourneySidebar = ({ onJourneySelect, logId }) => {
   }, [logId]);
 
   return (
-    <div className='border-grey px-2 h-full max-h-96 overflow-y-auto'>
-      {journeys.map((journey) => (
-        <div 
-          key={journey.Id}
-          className='cursor-pointer p-2'
-          onClick={() => onJourneySelect(journey)}
-        >
-          <div className='rounded-xl bg-[white] p-2'>
-            <div className='text-xl'>
-              {journey.Title}
-              <hr />
-            </div>
-            <div>
-              {journey.Date}
+    <>
+      {journeys.length > 0 ? (
+        <div className='border-grey px-2 h-full max-h-96 overflow-y-auto'>
+        {journeys.map((journey) => (
+          <div 
+            key={journey.Id}
+            className='cursor-pointer p-2'
+            onClick={() => onJourneySelect(journey)}
+          >
+            <div className='rounded-xl bg-[white] p-2'>
+              <div className='text-xl'>
+                {journey.Title}
+                <hr />
+              </div>
+              <div>
+                {journey.Date}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+        </div>) : null}
+    </>
   );
+  
+  
 };
 
 export default JourneySidebar;
