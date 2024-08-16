@@ -2,7 +2,7 @@
 
 import mysql from 'mysql2';
 import { connectToDB } from "@/backend/database/mySql";
-import { getLogsId } from './logs';
+import { addLog, getLogsId } from './logs';
 
 export async function getLogsIssues(){
     let connection = await connectToDB();
@@ -36,4 +36,9 @@ export async function getTags(){
     }
 
 
+}
+
+export async function testAddLog({userId, title, description}){
+
+    addLog({userId, title, description})
 }
