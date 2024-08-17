@@ -19,8 +19,8 @@ export async function testAddLog({ userId, title, description }) {
     }
 }
 
-// New function to add tags to a log
-export async function addTagsToLog(logId, tagIds) {
+// Function to add tags to a log
+export async function testAddTagsToLog(logId, tagIds) {
     let connection = await connectToDB();
     const sql = `INSERT INTO Log_Tags (LogId, TagId) VALUES (?, ?);`;
 
@@ -36,57 +36,34 @@ export async function addTagsToLog(logId, tagIds) {
     }
 }
 
+// Function to add solutions to a log
+export async function testAddSolutionsToLog(logId, solutions) {
+    let connection = await connectToDB();
+    const sql = `INSERT INTO Solutions (LogId, Solution) VALUES (?, ?);`;
 
+    try {
+        for (const solution of solutions) {
+            await connection.query(sql, [logId, solution]);
+        }
+    } catch (error) {
+        console.log("Error adding solutions: ", error);
+        throw error;
+    } finally {
+        connection.close();
+    }
+}
 
-export async function testDeleteLog({id}){
+// Function to delete a log
+export async function testDeleteLog({ id }) {
     let connection = await connectToDB();
     const sql = `DELETE FROM Logs WHERE Users_Id = ?;`;
 
     try {
-        // Ensure proper parameter substitution
-        await connection.query(sql, id);
-        console.log("Changed");
+        await connection.query(sql, [id]);
+        console.log("Log deleted");
     } catch (error) {
-        console.log("Error with updating log: ", error);
+        console.log("Error deleting log: ", error);
     } finally {
         connection.close();
     }
 }
-
-
-
-/*
-export async function getLogsIssues(){
-    let connection = await connectToDB();
-
-    const sql = 'SELECT * FROM Logs'
-
-    try {
-        const logs = await connection.query(sql);
-        console.log("got all logs");
-        return logs
-    } catch (error) {
-        console.log("Error with getting logs: ", error);
-    } finally {
-        connection.close();
-    }
-}
-
-export async function getTags(){
-    let connection = await connectToDB();
-
-    const sql = 'SELECT * FROM Tags'
-
-    try {
-        const tags = await connection.query(sql);
-        console.log("got all tags");
-        return tags
-    } catch (error) {
-        console.log("Error with getting tags ", error);
-    } finally {
-        connection.close();
-    }
-
-
-}
-*/

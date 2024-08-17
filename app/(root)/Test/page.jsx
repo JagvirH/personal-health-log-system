@@ -1,22 +1,32 @@
 "use client"
 
-import { testAddLog, testDeleteLog, addTagsToLog } from '@/backend/database/statTesting';
+import { testAddLog, testDeleteLog, testAddTagsToLog, testAddSolutionsToLog } from '@/backend/database/statTesting';
 import React, { useState } from 'react';
 
 const Page = () => {
     const [createdLogIds, setCreatedLogIds] = useState([]);
 
     // Array of logs data
-    const x = [
+    const logs = [
         [1, "test1", "test1"], // First log data
         [1, "Hello", "test1"]  // Second log data
     ];
 
     // Array of tags for corresponding logs
-    const y = [
+    const logTags = [
         [1, 2, 3], // Tags for the first log
         [1, 2]     // Tags for the second log
     ];
+
+    const logSolution = [
+        ['smfr'],
+        ['wrgberj']
+    ]
+
+    const logOpinion = [
+        ['sefwf'],
+        ['wefwef']
+    ]
 
     // Handlers for the buttons
     const handleAddClick1 = async () => {
@@ -24,9 +34,11 @@ const Page = () => {
         const newLogIds = [];
         
         // Add logs and get their IDs
-        for (let i = 0; i < x.length; i++) {
-            const [userId, title, description] = x[i];
-            const tags = y[i];
+        for (let i = 0; i < logs.length; i++) {
+            const [userId, title, description] = logs[i];
+            const tags = logTags[i];
+            const solutions = logSolution[i];
+
 
             try {
                 // Add the log and get its ID
@@ -35,8 +47,15 @@ const Page = () => {
 
                 // Add the associated tags for this log
                 if (logId && tags) {
-                    await addTagsToLog(logId, tags);
+                    await testAddTagsToLog(logId, tags);
                 }
+
+                if (logId && solutions) {
+                    //await testAddTagsToLog(logId, solutions);
+                    await testAddSolutionsToLog(logId, solutions)
+                }
+
+
             } catch (error) {
                 console.error("Error adding log or tags:", error);
             }
