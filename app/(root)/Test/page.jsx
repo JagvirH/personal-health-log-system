@@ -1,6 +1,6 @@
 "use client"
 
-import { testAddLog, testDeleteLog, testAddTagsToLog, testAddSolutionsToLog } from '@/backend/database/statTesting';
+import { testAddLog, testDeleteLog, testAddTagsToLog, testAddSolutionsToLog, testAddOpinionToLog } from '@/backend/database/statTesting';
 import React, { useState } from 'react';
 
 const Page = () => {
@@ -19,14 +19,14 @@ const Page = () => {
     ];
 
     const logSolution = [
-        ['smfr'],
-        ['wrgberj']
-    ]
+        ['smfr'],  // Solution for the first log
+        ['wrgberj'] // Solution for the second log
+    ];
 
     const logOpinion = [
-        ['sefwf'],
-        ['wefwef']
-    ]
+        [['sefwf', 1]],   // Opinions for the first log
+        [['wefwef', 1]]   // Opinions for the second log
+    ];
 
     // Handlers for the buttons
     const handleAddClick1 = async () => {
@@ -38,7 +38,7 @@ const Page = () => {
             const [userId, title, description] = logs[i];
             const tags = logTags[i];
             const solutions = logSolution[i];
-
+            const opinions = logOpinion[i];
 
             try {
                 // Add the log and get its ID
@@ -50,14 +50,18 @@ const Page = () => {
                     await testAddTagsToLog(logId, tags);
                 }
 
+                // Add the associated solutions for this log
                 if (logId && solutions) {
-                    //await testAddTagsToLog(logId, solutions);
-                    await testAddSolutionsToLog(logId, solutions)
+                    await testAddSolutionsToLog(logId, solutions);
                 }
 
+                // Add the associated opinions for this log
+                if (logId && opinions) {
+                    await testAddOpinionToLog(logId, opinions);
+                }
 
             } catch (error) {
-                console.error("Error adding log or tags:", error);
+                console.error("Error adding log, tags, solutions, or opinions:", error);
             }
         }
 

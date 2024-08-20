@@ -53,6 +53,22 @@ export async function testAddSolutionsToLog(logId, solutions) {
     }
 }
 
+export async function testAddOpinionToLog(logId, opinions) {
+    let connection = await connectToDB();
+    const sql = `INSERT INTO Opinions (LogId, Description, WhoId) VALUES (?, ?, ?);`;
+
+    try {
+        for (const [description, whoId] of opinions) {
+            await connection.query(sql, [logId, description, whoId]);
+        }
+    } catch (error) {
+        console.log("Error adding opinions: ", error);
+        throw error;
+    } finally {
+        connection.close();
+    }
+}
+
 // Function to delete a log
 export async function testDeleteLog({ id }) {
     let connection = await connectToDB();
