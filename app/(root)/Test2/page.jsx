@@ -1,147 +1,96 @@
-"use client"
+"use client";
 
-import { Bar, BarChart, Label, Rectangle, ReferenceLine, XAxis } from "recharts"
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components//ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components//ui/chart"
+import { PieChart, Pie, Cell } from "recharts";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChartContainer } from "@/components/ui/chart";
 
 export default function Component() {
+  const data = [
+    {
+      activity: "Stand",
+      value: (8 / 12) * 100,
+      fill: "var(--color-stand)",
+    },
+    {
+      activity: "Exercise",
+      value: (73 / 120) * 100,
+      fill: "var(--color-exercise)",
+    },
+    {
+      activity: "Move",
+      value: (562 / 600) * 100,
+      fill: "var(--color-move)",
+    },
+  ];
+
   return (
-    <Card className="lg:max-w-md">
-      <CardHeader className="space-y-0 pb-2">
-        <CardDescription>Today</CardDescription>
-        <CardTitle className="text-4xl tabular-nums">
-          12,584{" "}
-          <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-            steps
-          </span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card className="max-w-xs">
+      <CardContent className="flex gap-4 p-4">
+        <div className="grid items-center gap-2">
+          <div className="grid flex-1 auto-rows-min gap-0.5">
+            <div className="text-sm text-muted-foreground">Move</div>
+            <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
+              562/600
+              <span className="text-sm font-normal text-muted-foreground">
+                kcal
+              </span>
+            </div>
+          </div>
+          <div className="grid flex-1 auto-rows-min gap-0.5">
+            <div className="text-sm text-muted-foreground">Exercise</div>
+            <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
+              73/120
+              <span className="text-sm font-normal text-muted-foreground">
+                min
+              </span>
+            </div>
+          </div>
+          <div className="grid flex-1 auto-rows-min gap-0.5">
+            <div className="text-sm text-muted-foreground">Stand</div>
+            <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
+              8/12
+              <span className="text-sm font-normal text-muted-foreground">
+                hr
+              </span>
+            </div>
+          </div>
+        </div>
         <ChartContainer
           config={{
-            steps: {
-              label: "Steps",
+            move: {
+              label: "Move",
               color: "hsl(var(--chart-1))",
             },
+            exercise: {
+              label: "Exercise",
+              color: "hsl(var(--chart-2))",
+            },
+            stand: {
+              label: "Stand",
+              color: "hsl(var(--chart-3))",
+            },
           }}
+          className="mx-auto aspect-square w-full max-w-[80%]"
         >
-          <BarChart
-            accessibilityLayer
-            margin={{
-              left: -4,
-              right: -4,
-            }}
-            data={[
-              {
-                date: "2024-01-01",
-                steps: 2000,
-              },
-              {
-                date: "2024-01-02",
-                steps: 2100,
-              },
-              {
-                date: "2024-01-03",
-                steps: 2200,
-              },
-              {
-                date: "2024-01-04",
-                steps: 1300,
-              },
-              {
-                date: "2024-01-05",
-                steps: 1400,
-              },
-              {
-                date: "2024-01-06",
-                steps: 2500,
-              },
-              {
-                date: "2024-01-07",
-                steps: 1600,
-              },
-            ]}
-          >
-            <Bar
-              dataKey="steps"
-              fill="var(--color-steps)"
-              radius={5}
-              fillOpacity={0.6}
-              activeBar={<Rectangle fillOpacity={0.8} />}
-            />
-            <XAxis
-              dataKey="date"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={4}
-              tickFormatter={(value) => {
-                return new Date(value).toLocaleDateString("en-US", {
-                  weekday: "short",
-                })
-              }}
-            />
-            <ChartTooltip
-              defaultIndex={2}
-              content={
-                <ChartTooltipContent
-                  hideIndicator
-                  labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })
-                  }}
-                />
-              }
-              cursor={false}
-            />
-            <ReferenceLine
-              y={1200}
-              stroke="hsl(var(--muted-foreground))"
-              strokeDasharray="3 3"
-              strokeWidth={1}
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="activity"
+              innerRadius="40%"
+              outerRadius="80%"
+              fill="var(--color-move)"
+              paddingAngle={5}
+              startAngle={90}
+              endAngle={450}
             >
-              <Label
-                position="insideBottomLeft"
-                value="Average Steps"
-                offset={10}
-                fill="hsl(var(--foreground))"
-              />
-              <Label
-                position="insideTopLeft"
-                value="12,343"
-                className="text-lg"
-                fill="hsl(var(--foreground))"
-                offset={10}
-                startOffset={100}
-              />
-            </ReferenceLine>
-          </BarChart>
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.fill} />
+              ))}
+            </Pie>
+          </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-1">
-        <CardDescription>
-          Over the past 7 days, you have walked{" "}
-          <span className="font-medium text-foreground">53,305</span> steps.
-        </CardDescription>
-        <CardDescription>
-          You need <span className="font-medium text-foreground">12,584</span>{" "}
-          more steps to reach your goal.
-        </CardDescription>
-      </CardFooter>
     </Card>
-  )
+  );
 }
