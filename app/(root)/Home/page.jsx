@@ -34,7 +34,7 @@ export default async function Page() {
                 Home
             </div>
 
-            <div className='flex flex-row w-1/2'>
+            <div className='flex flex-row'>
                 <div>
                     <div className='px-8 py-1'>
                         <div className='heading_text pl-1'>
@@ -47,7 +47,7 @@ export default async function Page() {
                         </div>
                     </div>
 
-                    <div className='px-8 py-1 h-full '>
+                    <div className='px-8 py-1 '>
                         <div className='heading_text pl-1'>
                             Latest News
                         </div>
@@ -69,7 +69,7 @@ export default async function Page() {
                     </div>
                 </div>
 
-                <div>
+                <div className='w-1/2 bg-[green]'>
                     <PieChartTags />
                 </div>
                 
