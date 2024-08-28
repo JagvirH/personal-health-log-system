@@ -35,19 +35,36 @@ export default async function Page() {
             </div>
 
             <div className='flex flex-row'>
-                <div>
+                <div className='w-1/2'>
                     <div className='px-8 py-1'>
                         <div className='heading_text pl-1'>
                             Bookmarks
                         </div>
-                        <div className='border border-grey p-1'>
-                            <div className='h-[30vh] overflow-y-auto border p-4 bg-[#e8eced] rounded'>
+                        <div className=''>
+                            <div className='h-[30vh] overflow-y-auto border bg-[#e8eced] rounded'>
                                 <HomeLogs logs={logs} />
                             </div>
                         </div>
                     </div>
 
-                    <div className='px-8 py-1 '>
+                    
+                </div>
+
+                <div className='w-1/2 '>
+                    <div className=''>
+                        <PieChartTags />
+                    </div>
+
+                    
+                </div>
+                
+            </div>
+        </div>
+    );
+}
+
+/*
+<div className='px-8 py-1 '>
                         <div className='heading_text pl-1'>
                             Latest News
                         </div>
@@ -67,13 +84,4 @@ export default async function Page() {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className='w-1/2 bg-[green]'>
-                    <PieChartTags />
-                </div>
-                
-            </div>
-        </div>
-    );
-}
+*/

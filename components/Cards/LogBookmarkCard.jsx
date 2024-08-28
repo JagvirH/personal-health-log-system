@@ -18,28 +18,28 @@ const LogBookmarkCard = ({ title, status, description, id }) => {
   return (
     <button
       onClick={handleClick}
-      className='rounded rounded-xl border border-gray-300 flex flex-row bg-white mb-2 p-4 w-full text-left hover:border-blue-500'
+      className="flex flex-row items-center justify-between rounded-lg border border-gray-300 bg-white text-gray-800 p-4 mb-4 w-full text-left shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
     >
-      <div className='w-3/4'>
-        <div className='flex flex-col'>
-          <div className='font-bold'>
+      <div className="w-3/4">
+        <div className="flex flex-col">
+          <div className="text-lg font-bold">
             {title}
           </div>
-          <div className='rounded border border-gray-300 mt-2 p-1 text-sm max-h-12 overflow-hidden'>
-            <p className='line-clamp-3'>{description}</p>
+          <div className="rounded-lg bg-gray-100 mt-3 p-2 text-sm max-h-16 overflow-hidden">
+            <p className="line-clamp-3">{description}</p>
           </div>
         </div>
       </div>
-      <div className='w-1/4 flex flex-col items-center justify-center p-4'>
-       
-          <div className='border border-blue-500 p-2 rounded'>
-            <div>
-              Straight to <br /> journey
-            </div>
+      <div className="w-1/4 flex flex-col items-center justify-center">
+        <div className="border border-blue-500 p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors duration-300 ease-in-out">
+          <div className="text-center">
+            Straight to <br /> Journey
           </div>
-        
+        </div>
       </div>
     </button>
+
+
   );
 };
 
