@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^5.0.3",
+    "@clerk/nextjs": "^6.3.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
@@ -24,7 +24,7 @@
     "css.gg": "^2.1.1",
     "lucide-react": "^0.378.0",
     "mysql2": "^3.9.7",
-    "next": "14.2.3",
+    "next": "^14.2.17",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
