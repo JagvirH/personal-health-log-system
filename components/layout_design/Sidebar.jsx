@@ -6,20 +6,19 @@ import { addUser, checkUser } from '@/backend/database/onboarding';
 import Link from 'next/link'
 import Image from 'next/image';
 
-
+//,'Test','Test2'
 // Importing Tailwind CSS styles
 import '../../app/globals.css';
 
 export default async function Sidebar() {
-    // Define a list of items
-    const items = ['Home', 'Logs', 'Search','Test','Test2'];
+    // Define a list of items\
+    const items = ['Home', 'Logs', 'Search'];
 
     return (
         <div className='sidebar_background rounded-r-xl border border-[#1479fd] h-full'>
             <div className='flex flex-col h-screen'>
                 <div>
                     <div className='blue_text_title underline underline-offset-4'>
-                        
                         <Image 
                         src='/logo.png' 
                         alt='logo' 
