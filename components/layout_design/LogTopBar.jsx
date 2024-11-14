@@ -10,7 +10,6 @@ const LogTopBar = ({ logId, log }) => {
   const [bookmark, setBookmark] = useState(log.Bookmark);
   const [isHovered, setIsHovered] = useState(false);
 
-  console.log(log.Tags.type);
 
   const handleBookmarkClick = async () => {
     const newBookmark = !bookmark;

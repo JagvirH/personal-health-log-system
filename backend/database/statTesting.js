@@ -1,85 +1,83 @@
-'use server'
-
-import mysql from 'mysql2/promise';
-import { connectToDB } from "@/backend/database/mySql";
+"use server";
+import { connectToDB } from "@/backend/database/postgres"; // Connect to PostgreSQL
 
 // Existing function to add logs
 export async function testAddLog({ userId, title, description }) {
-    let connection = await connectToDB();
-    const sql = `INSERT INTO Logs (Users_Id, Title, Description, Status, Bookmark, Share) VALUES (?, ?, ?, 'Ongoing', false, false);`;
+    const connection = await connectToDB(); // Keep variable name `connection`
+    const sql = `INSERT INTO logs (users_id, title, description, status, bookmark, share) VALUES ($1, $2, $3, 'Ongoing', false, false);`;
 
     try {
-        const [result] = await connection.query(sql, [userId, title, description]);
+        const result = await connection.query(sql, [userId, title, description]);
         return result.insertId;
     } catch (error) {
-        console.log("Error adding log: ", error);
+        console.log("Error adding log:", error);
         throw error;
     } finally {
-        connection.close();
+        connection.end();
     }
 }
 
 // Function to add tags to a log
 export async function testAddTagsToLog(logId, tagIds) {
-    let connection = await connectToDB();
-    const sql = `INSERT INTO Log_Tags (LogId, TagId) VALUES (?, ?);`;
+    const connection = await connectToDB(); // Keep variable name `connection`
+    const sql = `INSERT INTO log_tags (logid, tagid) VALUES ($1, $2);`;
 
     try {
         for (const tagId of tagIds) {
             await connection.query(sql, [logId, tagId]);
         }
     } catch (error) {
-        console.log("Error adding tags: ", error);
+        console.log("Error adding tags:", error);
         throw error;
     } finally {
-        connection.close();
+        connection.end();
     }
 }
 
 // Function to add solutions to a log
 export async function testAddSolutionsToLog(logId, solutions) {
-    let connection = await connectToDB();
-    const sql = `INSERT INTO Solutions (LogId, Solution) VALUES (?, ?);`;
+    const connection = await connectToDB(); // Keep variable name `connection`
+    const sql = `INSERT INTO solutions (logid, solution) VALUES ($1, $2);`;
 
     try {
         for (const solution of solutions) {
             await connection.query(sql, [logId, solution]);
         }
     } catch (error) {
-        console.log("Error adding solutions: ", error);
+        console.log("Error adding solutions:", error);
         throw error;
     } finally {
-        connection.close();
+        connection.end();
     }
 }
 
 export async function testAddOpinionToLog(logId, opinions) {
-    let connection = await connectToDB();
-    const sql = `INSERT INTO Opinions (LogId, Description, WhoId) VALUES (?, ?, ?);`;
+    const connection = await connectToDB(); // Keep variable name `connection`
+    const sql = `INSERT INTO opinions (logid, description, whoid) VALUES ($1, $2, $3);`;
 
     try {
         for (const [description, whoId] of opinions) {
             await connection.query(sql, [logId, description, whoId]);
         }
     } catch (error) {
-        console.log("Error adding opinions: ", error);
+        console.log("Error adding opinions:", error);
         throw error;
     } finally {
-        connection.close();
+        connection.end();
     }
 }
 
 // Function to delete a log
 export async function testDeleteLog({ id }) {
-    let connection = await connectToDB();
-    const sql = `DELETE FROM Logs WHERE Users_Id = ?;`;
+    const connection = await connectToDB(); // Keep variable name `connection`
+    const sql = `DELETE FROM logs WHERE users_id = $1;`;
 
     try {
         await connection.query(sql, [id]);
         console.log("Log deleted");
     } catch (error) {
-        console.log("Error deleting log: ", error);
+        console.log("Error deleting log:", error);
     } finally {
-        connection.close();
+        connection.end();
     }
 }
