@@ -1,17 +1,21 @@
-"use server";
-import { connectToDB } from "@/backend/database/postgres"; // Connect to PostgreSQL
+"use server"
+import mysql from 'mysql2/promise';
+import { connectToDB } from "@/backend/database/mySql";
 
 export async function getSolution({ logId }) {
-    const connection = await connectToDB(); // Keep variable name `connection`
-    const query = 'SELECT * FROM solutions WHERE logid = $1';
+    //console.log(logId)
+    let connection = await connectToDB();
+    const query = 'SELECT * FROM Solutions WHERE LogId = ?';
 
     try {
-        const { rows } = await connection.query(query, [logId]);
+        const [rows] = await connection.execute(query, [logId]);
         
         if (rows.length === 0) {
-            return ""; // Return an empty string if no solution found
+            
+            return "";
         } else {
-            return rows[0].solution; // Assuming the solution is in a column named 'solution'
+            //console.log(rows[])
+            return rows[0].Solution; // Assuming the solution is in a column named 'solution'
         }
     } catch (error) {
         console.error("Error fetching solution:", error);
@@ -21,24 +25,30 @@ export async function getSolution({ logId }) {
     }
 }
 
-export async function insertOrUpdateSolution({ logId, solution }) {
-    const connection = await connectToDB(); // Keep variable name `connection`
-    const selectSql = 'SELECT * FROM solutions WHERE logid = $1';
-    const insertSql = 'INSERT INTO solutions (logid, solution) VALUES ($1, $2)';
-    const updateSql = 'UPDATE solutions SET solution = $1 WHERE logid = $2';
+
+
+export async function insertOrUpdateSolution({logId,  solution }) {
+    let connection = await connectToDB();
+    const selectSql = 'SELECT * FROM Solutions WHERE LogId = ?';
+    const insertSql = 'INSERT INTO Solutions (LogId, Solution) VALUES ( ?, ?)';
+    const updateSql = 'UPDATE Solutions SET Solution = ? WHERE LogId = ?';
 
     try {
-        const { rows: results } = await connection.query(selectSql, [logId]);
+        const [results] = await connection.execute(selectSql, [logId]);
         if (results.length > 0) {
-            // Update existing solution
-            await connection.query(updateSql, [solution, logId]);
+
+            const logId2 = parseInt(logId, 10);
+
+            await connection.execute(updateSql, [ solution, logId2]);
         } else {
-            // Insert new solution
-            await connection.query(insertSql, [logId, solution]);
+            // Insert new opinion
+            await connection.execute(insertSql, [logId, solution]);
         }
     } catch (error) {
-        console.error("Error inserting or updating solution:", error);
+        console.error("Error inserting or updating opinion:", error);
     } finally {
         connection.end();
     }
 }
+
+//test 1
